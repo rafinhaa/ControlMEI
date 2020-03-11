@@ -40,8 +40,8 @@ namespace ControMEI
 
         private void sqliteToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Sqlite.CriarBancoSQLite();
-            Sqlite.CriarTabelaSQlite();
+            BD.CriarBancoSQLite();
+            BD.CriarTabelaSQlite();
         }
     }
 }

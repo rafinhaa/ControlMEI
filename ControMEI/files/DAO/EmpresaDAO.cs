@@ -6,24 +6,26 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Data.SQLite;
 
 namespace ControMEI.files.DAO
 {
     class EmpresaDAO
     {
-        private readonly SqlConnection conexao = new SqlConnection(@"Data Source=(LocalDb)\MSSQLLocalDB;AttachDbFilename=C:\Users\Rafinhaa\source\repos\SimplesMEI\SimplesMEI\Database.mdf;Integrated Security=True");
-        private SqlDataReader dr;
-        private SqlCommand cmd;
+        private static SQLiteConnection sqliteConnection = BD.DbConnection();
+        private SQLiteDataReader dr;
+        private SQLiteCommand cmd;
         private string sql;
         private int returnSql;
 
-        public void Open()
+        private void Open()
         {
             try
             {
-                if (conexao.State == System.Data.ConnectionState.Closed)
+                
+                if (sqliteConnection.State == System.Data.ConnectionState.Closed)
                 {
-                    conexao.Open();
+                    sqliteConnection.Open();
                 }
             }
             catch (Exception ex)
@@ -31,11 +33,11 @@ namespace ControMEI.files.DAO
                 MessageBox.Show("Erro na conexão " + ex.Message);
             }
         }
-        public void Close()
+        private void Close()
         {
             try
             {
-                conexao.Close();
+                sqliteConnection.Close();
             }
             catch (Exception ex)
             {
@@ -47,9 +49,9 @@ namespace ControMEI.files.DAO
         {
             try
             {
-                Open();
+                Open();                
                 sql = "INSERT INTO Empresa (razaosocial,cnpj,cep,endereco,numero,complemento,bairro,telefone,cidade,estado,email) VALUES (@razaosocial,@cnpj,@cep,@endereco,@numero,@complemento,@bairro,@telefone,@cidade,@estado,@email);";
-                cmd = new SqlCommand(sql, conexao);
+                cmd = new SQLiteCommand(sql, sqliteConnection);
                 cmd.Parameters.AddWithValue("@razaosocial", empresa.RazaoSocial);
                 cmd.Parameters.AddWithValue("@cnpj", empresa.Cnpj);
                 cmd.Parameters.AddWithValue("@cep", empresa.Cep);
@@ -82,9 +84,9 @@ namespace ControMEI.files.DAO
         {
             try
             {
-                conexao.Open();
+                //conexao.Open();
                 sql = "DELETE Empresa WHERE id = @id";
-                cmd = new SqlCommand(sql, conexao);
+                cmd = new SQLiteCommand(sql, sqliteConnection);
                 cmd.Parameters.AddWithValue("@id", empresa.Id);
                 returnSql = cmd.ExecuteNonQuery();
                 if (returnSql > 0)
@@ -111,7 +113,7 @@ namespace ControMEI.files.DAO
             {
                 Open();
                 sql = "SELECT * FROM Empresa WHERE id = @id";
-                cmd = new SqlCommand(sql, conexao);
+                cmd = new SQLiteCommand(sql, sqliteConnection);
                 cmd.Parameters.AddWithValue("@id", empresa.Id);
                 dr = cmd.ExecuteReader();
                 if (dr.HasRows)
@@ -146,7 +148,7 @@ namespace ControMEI.files.DAO
             {
                 Open();
                 sql = "SELECT * FROM Empresa";
-                cmd = new SqlCommand(sql, conexao);
+                cmd = new SQLiteCommand(sql, sqliteConnection);
                 dr = cmd.ExecuteReader();
                 while (dr.Read())
                 {
@@ -180,7 +182,7 @@ namespace ControMEI.files.DAO
             {
                 Open();                
                 sql = "UPDATE Empresa SET razaosocial = @razaosocial, cnpj = @cnpj, cep = @cep, endereco = @endereco, numero = @numero, complemento = @complemento, bairro = @bairro, telefone = @telefone, cidade = @cidade, estado = @estado, email = @email WHERE id = @id";
-                cmd = new SqlCommand(sql, conexao);
+                cmd = new SQLiteCommand(sql, sqliteConnection);
                 cmd.Parameters.AddWithValue("@razaosocial", empresa.RazaoSocial);
                 cmd.Parameters.AddWithValue("@cnpj", empresa.Cnpj);
                 cmd.Parameters.AddWithValue("@cep", empresa.Cep);

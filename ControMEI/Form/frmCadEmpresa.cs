@@ -1,4 +1,5 @@
 ﻿using ControMEI.files.Class;
+using ControMEI.files.DAO;
 using ControMEI.files.Util;
 using System;
 using System.Collections.Generic;
@@ -38,7 +39,8 @@ namespace ControMEI
                 );
             if (Util.validarEmpresa(empresa))
             {
-                MessageBox.Show("vou salvar no BD");
+                EmpresaDAO empresaDAO = new EmpresaDAO();
+                empresaDAO.Insert(empresa);
             }
         }
 
