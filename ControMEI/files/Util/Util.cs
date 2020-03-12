@@ -189,5 +189,9 @@ namespace ControMEI.files.Util
 			else
 				return true;
 		}
+		public static string diretorioAtual()
+		{
+			return System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location);
+		}
 	}
 }

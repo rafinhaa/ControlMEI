@@ -2,30 +2,27 @@
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using System.Data;
 using System.Data.SQLite;
+using System.Windows.Forms;
+
 
 namespace ControMEI.files.DAO
 {    
     class RecebimentoDAO
     {
-        private readonly SqlConnection conexao = new SqlConnection(@"Data Source=(LocalDb)\MSSQLLocalDB;AttachDbFilename=C:\Users\Rafinhaa\source\repos\SimplesMEI\SimplesMEI\Database.mdf;Integrated Security=True");
-        private SqlDataReader dr;
-        private SqlCommand cmd;
+        private static SQLiteConnection sqliteConnection = BD.DbConnection();
+        private SQLiteDataReader dr;
+        private SQLiteCommand cmd;
         private string sql;
         private int returnSql;
 
-        public void Open()
+        private void Open()
         {
             try
             {
-                if (conexao.State == System.Data.ConnectionState.Closed)
+                if (sqliteConnection.State == System.Data.ConnectionState.Closed)
                 {
-                    conexao.Open();
+                    sqliteConnection.Open();
                 }
             }
             catch (Exception ex)
@@ -33,11 +30,11 @@ namespace ControMEI.files.DAO
                 MessageBox.Show("Erro na conexão " + ex.Message);
             }
         }
-        public void Close()
+        private void Close()
         {
             try
             {
-                conexao.Close();
+                sqliteConnection.Close();
             }
             catch (Exception ex)
             {
@@ -45,13 +42,13 @@ namespace ControMEI.files.DAO
             }
         }
 
-        public void Insert(Recebimento recebimento)
+        public string Insert(Recebimento recebimento)
         {
             try
             {
                 Open();
-                sql = "INSERT INTO Recebimento (id_empresa,data,tipo,fiscal,valor) VALUES (@id_empresa,@descricao@data,@tipo,@notafiscal,@valor);";
-                cmd = new SqlCommand(sql, conexao);
+                sql = "INSERT INTO Recebimento (id_empresa,descricao,data,tipo,fiscal,valor) VALUES (@id_empresa,@descricao,@data,@tipo,@notafiscal,@valor);";
+                cmd = new SQLiteCommand(sql, sqliteConnection);
                 cmd.Parameters.AddWithValue("@id_empresa", recebimento.Empresa.Id);
                 cmd.Parameters.AddWithValue("@descricao", recebimento.Descricao);
                 cmd.Parameters.AddWithValue("@data", recebimento.Data);
@@ -59,30 +56,31 @@ namespace ControMEI.files.DAO
                 cmd.Parameters.AddWithValue("@notafiscal", recebimento.NotaFiscal);
                 cmd.Parameters.AddWithValue("@valor", recebimento.Valor);
                 returnSql = cmd.ExecuteNonQuery();
+                cmd.Dispose();
+                Close();
                 if (returnSql > 0)
                 {
-                    MessageBox.Show("Cadastro efetuado");
+                    return "Cadastro efetuado com sucesso!";
                 }
                 else
                 {
-                    MessageBox.Show("Cadastro não realizado");
+                    return "Não foi possível efetuar o cadastro.";
                 }
-                cmd.Dispose();
+                
             }
             catch (SqlException ex)
             {
-                MessageBox.Show("Erro no comando sql" + ex.Message);
+                return "Erro no comando sql:\n" + ex.Message;
             }
 
         }
-
         public void Delete(Recebimento recebimento)
         {
             try
             {
-                conexao.Open();
+                Open();
                 sql = "DELETE Recebimento WHERE id = @id";
-                cmd = new SqlCommand(sql, conexao);
+                cmd = new SQLiteCommand(sql, sqliteConnection);
                 cmd.Parameters.AddWithValue("@id", recebimento.Id);
                 returnSql = cmd.ExecuteNonQuery();
                 if (returnSql > 0)
@@ -108,8 +106,8 @@ namespace ControMEI.files.DAO
             try
             {
                 Open();
-                sql = "SELECT * FROM Receita WHERE id = @id";
-                cmd = new SqlCommand(sql, conexao);
+                sql = "SELECT * FROM Recebimento WHERE id = @id";
+                cmd = new SQLiteCommand(sql, sqliteConnection);
                 cmd.Parameters.AddWithValue("@id", recebimento.Id);
                 dr = cmd.ExecuteReader();
                 if (dr.HasRows)
@@ -141,7 +139,7 @@ namespace ControMEI.files.DAO
             {
                 Open();
                 sql = "SELECT * FROM Recebimento";
-                cmd = new SqlCommand(sql, conexao);
+                cmd = new SQLiteCommand(sql, sqliteConnection);
                 dr = cmd.ExecuteReader();
                 while (dr.Read())
                 {
@@ -172,7 +170,7 @@ namespace ControMEI.files.DAO
             {
                 Open();
                 sql = "UPDATE RECEITA SET id_empresa = @id_empresa, descricao = @descricao , data = @data, tipo = @tipo, fiscal = @fiscal, valor = @valor WHERE id = @id";
-                cmd = new SqlCommand(sql, conexao);
+                cmd = new SQLiteCommand(sql, sqliteConnection);
                 cmd.Parameters.AddWithValue("@id_empresa", recebimento.Empresa.Id);
                 cmd.Parameters.AddWithValue("@descricao", recebimento.Data);
                 cmd.Parameters.AddWithValue("@data", recebimento.Data);

@@ -1,13 +1,7 @@
 ﻿using ControMEI.files.Class;
+using ControMEI.files.DAO;
 using ControMEI.files.Util;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace ControMEI
@@ -47,7 +41,8 @@ namespace ControMEI
                 );            
             if (Util.validarRecebimento(recebimento))
             {
-                MessageBox.Show("vou salvar no BD");
+                RecebimentoDAO recebimentoDAO = new RecebimentoDAO();
+                MessageBox.Show(recebimentoDAO.Insert(recebimento));
             }
         }
     }

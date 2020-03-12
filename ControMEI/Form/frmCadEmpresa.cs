@@ -2,13 +2,6 @@
 using ControMEI.files.DAO;
 using ControMEI.files.Util;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 
@@ -40,7 +33,7 @@ namespace ControMEI
             if (Util.validarEmpresa(empresa))
             {
                 EmpresaDAO empresaDAO = new EmpresaDAO();
-                empresaDAO.Insert(empresa);
+                MessageBox.Show(empresaDAO.Insert(empresa));
             }
         }
 

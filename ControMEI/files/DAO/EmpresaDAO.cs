@@ -2,9 +2,6 @@
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Data.SQLite;
 
@@ -21,8 +18,7 @@ namespace ControMEI.files.DAO
         private void Open()
         {
             try
-            {
-                
+            {                
                 if (sqliteConnection.State == System.Data.ConnectionState.Closed)
                 {
                     sqliteConnection.Open();
@@ -45,7 +41,7 @@ namespace ControMEI.files.DAO
             }
         }
 
-        public void Insert(Empresa empresa)
+        public string Insert(Empresa empresa)
         {
             try
             {
@@ -64,19 +60,20 @@ namespace ControMEI.files.DAO
                 cmd.Parameters.AddWithValue("@estado", empresa.Estado);
                 cmd.Parameters.AddWithValue("@email", empresa.Email);
                 returnSql = cmd.ExecuteNonQuery();
+                cmd.Dispose();
+                Close();
                 if (returnSql > 0)
                 {
-                    MessageBox.Show("Cadastro efetuado");
+                    return "Cadastro efetuado com sucesso!";
                 }
                 else
                 {
-                    MessageBox.Show("Cadastro não realizado");
-                }
-                cmd.Dispose();
+                    return "Não foi possível efetuar o cadastro.";
+                }                
             }
             catch (SqlException ex)
             {
-                MessageBox.Show("Erro no comando sql" + ex.Message);
+                return "Erro no comando sql:\n" + ex.Message;
             }
 
         }

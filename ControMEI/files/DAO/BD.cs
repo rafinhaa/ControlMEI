@@ -1,9 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Data;
 using System.Data.SQLite;
 
 namespace ControMEI.files.DAO
@@ -12,8 +7,8 @@ namespace ControMEI.files.DAO
     {
         private static SQLiteConnection sqliteConnection;
         public static SQLiteConnection DbConnection()
-        {
-            sqliteConnection = new SQLiteConnection("Data Source=c:\\Cadastro.sqlite; Version=3;");
+        {   
+            sqliteConnection = new SQLiteConnection("Data Source=" + Util.Util.diretorioAtual() +"\\database.sqlite; Version=3;");
             sqliteConnection.Open();
             return sqliteConnection;
         }
@@ -21,7 +16,7 @@ namespace ControMEI.files.DAO
         {
             try
             {
-                SQLiteConnection.CreateFile(@"c:\Cadastro.sqlite");
+                //SQLiteConnection.CreateFile(@"c:\Cadastro.sqlite");
             }
             catch
             {
@@ -53,9 +48,10 @@ namespace ControMEI.files.DAO
                     cmd.CommandText = "CREATE TABLE IF NOT EXISTS Recebimento ( " +
                             "id INTEGER PRIMARY KEY AUTOINCREMENT,          " +
                             "id_empresa INT,                                " +
+                            "descricao VARCHAR,                             " +
                             "data VARCHAR,                                  " +
-                            "tipo VARCHAR,                                  " +
-                            "fiscal VARCHAR,                                " +
+                            "tipo INT,                                      " +
+                            "fiscal INT,                                    " +
                             "valor VARCHAR,                                 " +
                             "FOREIGN KEY(id_empresa) REFERENCES empresa(id) " +
                             ")";

@@ -39,9 +39,12 @@ namespace ControMEI
         }
 
         private void sqliteToolStripMenuItem_Click(object sender, EventArgs e)
+        {   
+        }
+
+        private void sairToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            BD.CriarBancoSQLite();
-            BD.CriarTabelaSQlite();
+            System.Windows.Forms.Application.Exit();
         }
     }
 }
