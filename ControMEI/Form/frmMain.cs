@@ -1,22 +1,24 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using ControMEI.files.Class;
 using ControMEI.files.DAO;
 
 namespace ControMEI
 {
     public partial class frmMain : Form
-    {
+    {         
         public frmMain()
         {
             InitializeComponent();
+            BD.CriarBancoSQLite();
+            EmpresaDAO empresaDAO = new EmpresaDAO();
+            if (empresaDAO.SelectAll().Count() >= 1)
+            {
+                //frmSelecionarEmpresa frmSelEmpresa = new frmSelecionarEmpresa(empresaDAO);
+                //frmSelEmpresa.MdiParent = this;
+                //frmSelEmpresa.Show();
+                //MessageBox.Show("lol");
+            }
         }
 
         private void empresaToolStripMenuItem_Click(object sender, EventArgs e)

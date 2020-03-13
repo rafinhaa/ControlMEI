@@ -5,23 +5,28 @@ namespace ControMEI.files.DAO
 {
     class BD
     {
+        private static string diretorioBD = Util.Util.diretorioAtual() + "\\database.sqlite";
         private static SQLiteConnection sqliteConnection;
         public static SQLiteConnection DbConnection()
         {   
-            sqliteConnection = new SQLiteConnection("Data Source=" + Util.Util.diretorioAtual() +"\\database.sqlite; Version=3;");
+            sqliteConnection = new SQLiteConnection("Data Source=" + diretorioBD + "; Version=3;");
             sqliteConnection.Open();
             return sqliteConnection;
         }
         public static void CriarBancoSQLite()
         {
-            try
+            if (!System.IO.File.Exists(diretorioBD))
             {
-                //SQLiteConnection.CreateFile(@"c:\Cadastro.sqlite");
-            }
-            catch
-            {
-                throw;
-            }
+                try
+                {
+                    SQLiteConnection.CreateFile(@"" + diretorioBD);
+                    CriarTabelaSQlite();
+                }
+                catch
+                {
+                    throw;
+                }
+            }                
         }
         public static void CriarTabelaSQlite()
         {
