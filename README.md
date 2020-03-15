@@ -5,6 +5,9 @@ Programado com Visual Studio
 
 CHANGLOG:
 
+v0.4b - 15/03/2020
+- Criado método genérico para a abertura de fomulários
+
 v0.3b - 12/03/2020
 - Criado na classe BD.cs a verificação se já existe um banco de dados
 - Criando no frmMain.cs uma tela para escolher se estiver mais do que uma espresa cadastrada
