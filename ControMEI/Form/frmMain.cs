@@ -1,8 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
-using ControMEI.files.Class;
 using ControMEI.files.DAO;
 
 namespace ControMEI
@@ -45,6 +43,8 @@ namespace ControMEI
         }
         private void receitaToolStripMenuItem1_Click(object sender, EventArgs e)
         {
+            Form1 frmCadReceita = new Form1();
+            OpenForm(frmCadReceita);
         }
 
         private void sqliteToolStripMenuItem_Click(object sender, EventArgs e)

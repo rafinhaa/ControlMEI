@@ -5,6 +5,13 @@ Programado com Visual Studio
 
 CHANGLOG:
 
+v0.5b - 22/03/2020
+- Criando frmConRecebimento
+- Alterado o campo valor da tabela Recebimento de VARCHAR para REAL
+- Incluido o método SelectAllDataSource que retorna um DataSource para um DataGridView
+- Criado método genérico SelectAllDataTable que recebe uma string sql de consulta
+- Criado o método validarConRecebimento que monsta a string sql de consulta
+
 v0.4b - 15/03/2020
 - Criado método genérico para a abertura de fomulários
 

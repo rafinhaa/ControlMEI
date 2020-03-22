@@ -1,13 +1,14 @@
 ﻿using ControMEI.files.Class;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
 using System.Data.SQLite;
 using System.Windows.Forms;
 
 
 namespace ControMEI.files.DAO
-{    
+{
     class RecebimentoDAO
     {
         private static SQLiteConnection sqliteConnection = BD.DbConnection();
@@ -66,7 +67,7 @@ namespace ControMEI.files.DAO
                 {
                     return "Não foi possível efetuar o cadastro.";
                 }
-                
+
             }
             catch (SqlException ex)
             {
@@ -117,7 +118,7 @@ namespace ControMEI.files.DAO
                         new Empresa(dr.GetInt32(dr.GetOrdinal("id_empresa"))),
                         dr.GetInt32(dr.GetOrdinal("id")),
                         dr["descricao"].ToString(),
-                        dr.GetInt32(dr.GetOrdinal("notafiscal")),                        
+                        dr.GetInt32(dr.GetOrdinal("fiscal")),
                         dr["data"].ToString(),
                         dr.GetInt32(dr.GetOrdinal("tipo")),
                         dr.GetFloat(dr.GetOrdinal("valor"))
@@ -132,7 +133,7 @@ namespace ControMEI.files.DAO
             }
             return recebimentoTemp;
         }
-        public List<Recebimento> SelectAll()
+        public List<Recebimento> SelectAllList()
         {
             List<Recebimento> recebimentoTemp = new List<Recebimento>();
             try
@@ -147,7 +148,7 @@ namespace ControMEI.files.DAO
                         new Empresa(dr.GetInt32(dr.GetOrdinal("id_empresa"))),
                         dr.GetInt32(dr.GetOrdinal("id")),
                         dr["descricao"].ToString(),
-                        dr.GetInt32(dr.GetOrdinal("notafiscal")),
+                        dr.GetInt32(dr.GetOrdinal("fiscal")),
                         dr["data"].ToString(),
                         dr.GetInt32(dr.GetOrdinal("tipo")),
                         dr.GetFloat(dr.GetOrdinal("valor"))
@@ -162,6 +163,67 @@ namespace ControMEI.files.DAO
             }
             return recebimentoTemp;
         }
+        public DataTable SelectAllDataTable()
+        {
+            var dataTable = new DataTable();
+            try
+            {
+                Open();
+                sql = "SELECT * FROM Recebimento";
+                SQLiteDataAdapter sqlda = new SQLiteDataAdapter(sql, sqliteConnection);
+                using (dataTable)
+                {
+                    sqlda.Fill(dataTable);
+                }
+                Close();
+            }
+            catch (Exception ex)
+            {
+                Close();
+                MessageBox.Show("ERRO " + ex.Message);
+            }
+            return dataTable;
+        }
+        public DataTable SelectAllDataTable(string values)
+        {
+            var dataTable = new DataTable();
+            try
+            {
+                Open();
+                sql = "SELECT * FROM Recebimento WHERE " + values;
+                SQLiteDataAdapter sqlda = new SQLiteDataAdapter(sql, sqliteConnection);
+                using (dataTable)
+                {
+                    sqlda.Fill(dataTable);
+                }
+                Close();
+            }
+            catch (Exception ex)
+            {
+                Close();
+                MessageBox.Show("ERRO " + ex.Message);
+            }
+            return dataTable;
+        }
+        public DataSet SelectAllDataSet()
+        {
+            var dataSet = new DataSet();
+            try
+            {
+                Open();
+                sql = "SELECT * FROM Recebimento";
+                SQLiteDataAdapter sqlda = new SQLiteDataAdapter(sql, sqliteConnection);
+                using (dataSet)
+                {
+                    sqlda.Fill(dataSet,"Info");
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("ERRO " + ex.Message);
+            }
+            return dataSet;
+        }
         public void Update(Recebimento recebimento)
         {
             int retorno;
@@ -175,7 +237,7 @@ namespace ControMEI.files.DAO
                 cmd.Parameters.AddWithValue("@descricao", recebimento.Data);
                 cmd.Parameters.AddWithValue("@data", recebimento.Data);
                 cmd.Parameters.AddWithValue("@tipo", recebimento.Tipo);
-                cmd.Parameters.AddWithValue("@fiscal",recebimento.NotaFiscal);
+                cmd.Parameters.AddWithValue("@fiscal", recebimento.NotaFiscal);
                 cmd.Parameters.AddWithValue("@valor", recebimento.Valor);
                 cmd.Parameters.AddWithValue("@id", recebimento.Id);
                 retorno = cmd.ExecuteNonQuery();

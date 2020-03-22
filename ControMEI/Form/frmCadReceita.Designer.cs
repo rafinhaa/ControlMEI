@@ -35,10 +35,10 @@
             this.label5 = new System.Windows.Forms.Label();
             this.txtDescrição = new System.Windows.Forms.TextBox();
             this.cmbEmissaoNF = new System.Windows.Forms.ComboBox();
-            this.mskData = new System.Windows.Forms.MaskedTextBox();
             this.cmbTipo = new System.Windows.Forms.ComboBox();
             this.txtValor = new System.Windows.Forms.TextBox();
             this.btnSalvar = new System.Windows.Forms.Button();
+            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.SuspendLayout();
             // 
             // label1
@@ -105,15 +105,6 @@
             this.cmbEmissaoNF.Size = new System.Drawing.Size(65, 21);
             this.cmbEmissaoNF.TabIndex = 6;
             // 
-            // mskData
-            // 
-            this.mskData.Location = new System.Drawing.Point(139, 73);
-            this.mskData.Mask = "00/00/0000";
-            this.mskData.Name = "mskData";
-            this.mskData.Size = new System.Drawing.Size(65, 20);
-            this.mskData.TabIndex = 7;
-            this.mskData.ValidatingType = typeof(System.DateTime);
-            // 
             // cmbTipo
             // 
             this.cmbTipo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
@@ -133,7 +124,7 @@
             this.txtValor.Name = "txtValor";
             this.txtValor.Size = new System.Drawing.Size(100, 20);
             this.txtValor.TabIndex = 9;
-            this.txtValor.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox2_KeyPress);
+            this.txtValor.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textValor_KeyPress);
             // 
             // btnSalvar
             // 
@@ -145,15 +136,24 @@
             this.btnSalvar.UseVisualStyleBackColor = true;
             this.btnSalvar.Click += new System.EventHandler(this.btnSalvar_Click);
             // 
+            // dateTimePicker1
+            // 
+            this.dateTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dateTimePicker1.Location = new System.Drawing.Point(139, 73);
+            this.dateTimePicker1.Name = "dateTimePicker1";
+            this.dateTimePicker1.Size = new System.Drawing.Size(100, 20);
+            this.dateTimePicker1.TabIndex = 7;
+            this.dateTimePicker1.Value = new System.DateTime(2020, 3, 22, 17, 19, 0, 0);
+            // 
             // frmCadReceita
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(477, 208);
+            this.Controls.Add(this.dateTimePicker1);
             this.Controls.Add(this.btnSalvar);
             this.Controls.Add(this.txtValor);
             this.Controls.Add(this.cmbTipo);
-            this.Controls.Add(this.mskData);
             this.Controls.Add(this.cmbEmissaoNF);
             this.Controls.Add(this.txtDescrição);
             this.Controls.Add(this.label5);
@@ -178,9 +178,9 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.TextBox txtDescrição;
         private System.Windows.Forms.ComboBox cmbEmissaoNF;
-        private System.Windows.Forms.MaskedTextBox mskData;
         private System.Windows.Forms.ComboBox cmbTipo;
         private System.Windows.Forms.TextBox txtValor;
         private System.Windows.Forms.Button btnSalvar;
+        private System.Windows.Forms.DateTimePicker dateTimePicker1;
     }
 }

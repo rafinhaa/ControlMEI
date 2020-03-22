@@ -85,6 +85,12 @@
     <Compile Include="files\DAO\RecebimentoDAO.cs" />
     <Compile Include="files\DAO\BD.cs" />
     <Compile Include="files\Util\Util.cs" />
+    <Compile Include="Form\frmConRecebimento.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form\frmConRecebimento.Designer.cs">
+      <DependentUpon>frmConRecebimento.cs</DependentUpon>
+    </Compile>
     <Compile Include="Form\frmCadEmpresa.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -111,6 +117,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Form\frmConRecebimento.resx">
+      <DependentUpon>frmConRecebimento.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Form\frmCadEmpresa.resx">
       <DependentUpon>frmCadEmpresa.cs</DependentUpon>
     </EmbeddedResource>

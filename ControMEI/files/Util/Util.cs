@@ -193,5 +193,32 @@ namespace ControMEI.files.Util
 		{
 			return System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location);
 		}
+
+		public static string validarConRecebimento(Recebimento recebimento)
+		{
+			string sql = "";
+			if (validarGenerico(recebimento.Descricao))
+			{
+				sql += " descricao = '" + recebimento.Descricao + "' AND";
+			}
+			if (validarComboBox(recebimento.NotaFiscal))
+			{
+				sql += " fiscal = " + recebimento.NotaFiscal + " AND";
+			}
+			if (validarData(recebimento.Data))
+			{
+				sql += " data = '" + recebimento.Data + "' AND";
+			}
+			if (validarComboBox(recebimento.Tipo))
+			{
+				sql += " tipo = " + recebimento.Tipo + " AND";
+			}
+			if (validarValor(recebimento.Valor))
+			{
+				sql += " valor = " + recebimento.Valor + " AND";
+			}
+			//MessageBox.Show(sql);
+			return sql.Remove(sql.Length -3 );
+		}
 	}
 }

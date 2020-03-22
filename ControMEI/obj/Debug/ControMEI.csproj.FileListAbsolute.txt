@@ -20,3 +20,5 @@ C:\Users\Rafinhaa\source\repos\ControMEI\ControMEI\bin\Debug\System.Data.SQLite.
 C:\Users\Rafinhaa\source\repos\ControMEI\ControMEI\bin\Debug\System.Data.SQLite.dll.config
 C:\Users\Rafinhaa\source\repos\ControMEI\ControMEI\obj\Debug\ControMEI.csproj.CopyComplete
 C:\Users\Rafinhaa\source\repos\ControMEI\ControMEI\obj\Debug\ControMEI.frmSelecionarEmpresa.resources
+C:\Users\Rafinhaa\source\repos\ControMEI\ControMEI\obj\Debug\ControMEI.csproj.CoreCompileInputs.cache
+C:\Users\Rafinhaa\source\repos\ControMEI\ControMEI\obj\Debug\ControMEI.Form1.resources

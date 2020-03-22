@@ -13,7 +13,7 @@ namespace ControMEI
         {
             InitializeComponent();
         }
-        private void textBox2_KeyPress(object sender, KeyPressEventArgs e)
+        private void textValor_KeyPress(object sender, KeyPressEventArgs e)
         {
             if(e.KeyChar == '.')
             {
@@ -35,7 +35,7 @@ namespace ControMEI
                 new Empresa(1),
                 txtDescrição.Text,
                 cmbEmissaoNF.SelectedIndex,
-                mskData.Text,
+                dateTimePicker1.Value.ToShortDateString(),
                 cmbTipo.SelectedIndex,
                 Util.converterStringEmFloat(txtValor.Text)                
                 );            
