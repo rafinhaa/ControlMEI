@@ -5,6 +5,12 @@ Programado com Visual Studio
 
 CHANGLOG:
 
+v0.6b - 04/04/2020
+- Criado botão de atualizar nofrmConRecebimento
+- Criado botão de excluir nofrmConRecebimento
+- Criado métodos para inserir o dataset no gridview
+- Criado método para bindar as informações das linhas do gridview no objeto Recebimento
+
 v0.5b - 22/03/2020
 - Criando frmConRecebimento
 - Alterado o campo valor da tabela Recebimento de VARCHAR para REAL

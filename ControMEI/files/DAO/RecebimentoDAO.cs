@@ -80,17 +80,17 @@ namespace ControMEI.files.DAO
             try
             {
                 Open();
-                sql = "DELETE Recebimento WHERE id = @id";
+                sql = "DELETE FROM Recebimento WHERE id = @id";
                 cmd = new SQLiteCommand(sql, sqliteConnection);
                 cmd.Parameters.AddWithValue("@id", recebimento.Id);
                 returnSql = cmd.ExecuteNonQuery();
                 if (returnSql > 0)
                 {
-                    MessageBox.Show("Cadastro efetuado");
+                    MessageBox.Show("Remoção concluída");
                 }
                 else
                 {
-                    MessageBox.Show("Cadastro não realizado");
+                    MessageBox.Show("Não foi possível efetuar a remoção");
                 }
                 cmd.Dispose();
                 //conexao.Close();
@@ -168,8 +168,8 @@ namespace ControMEI.files.DAO
             var dataTable = new DataTable();
             try
             {
-                Open();
-                sql = "SELECT * FROM Recebimento";
+                Open();                
+                sql = "SELECT id, id_empresa, descricao, data, tipo, fiscal, round(valor,2) AS valor from recebimento ORDER BY data ASC;";
                 SQLiteDataAdapter sqlda = new SQLiteDataAdapter(sql, sqliteConnection);
                 using (dataTable)
                 {
@@ -224,36 +224,36 @@ namespace ControMEI.files.DAO
             }
             return dataSet;
         }
-        public void Update(Recebimento recebimento)
+        public string Update(Recebimento recebimento)
         {
             int retorno;
             string sql;
             try
             {
                 Open();
-                sql = "UPDATE RECEITA SET id_empresa = @id_empresa, descricao = @descricao , data = @data, tipo = @tipo, fiscal = @fiscal, valor = @valor WHERE id = @id";
+                sql = "UPDATE Recebimento SET id_empresa = @id_empresa, descricao = @descricao , data = @data, tipo = @tipo, fiscal = @fiscal, valor = @valor WHERE id = @id";
                 cmd = new SQLiteCommand(sql, sqliteConnection);
                 cmd.Parameters.AddWithValue("@id_empresa", recebimento.Empresa.Id);
-                cmd.Parameters.AddWithValue("@descricao", recebimento.Data);
+                cmd.Parameters.AddWithValue("@descricao", recebimento.Descricao);
                 cmd.Parameters.AddWithValue("@data", recebimento.Data);
                 cmd.Parameters.AddWithValue("@tipo", recebimento.Tipo);
                 cmd.Parameters.AddWithValue("@fiscal", recebimento.NotaFiscal);
                 cmd.Parameters.AddWithValue("@valor", recebimento.Valor);
                 cmd.Parameters.AddWithValue("@id", recebimento.Id);
                 retorno = cmd.ExecuteNonQuery();
+                cmd.Dispose();
                 if (retorno > 0)
                 {
-                    MessageBox.Show("Cadastro efetuado");
+                    return "Atualização efetuada com sucesso!";
                 }
                 else
                 {
-                    MessageBox.Show("Cadastro não realizado");
-                }
-                cmd.Dispose();
+                    return "Não foi possível efetuar a atualização!";
+                }                
             }
             catch (Exception ex)
             {
-                MessageBox.Show("ERRO " + ex.Message);
+                return "ERRO " + ex.Message;
             }
         }
     }
