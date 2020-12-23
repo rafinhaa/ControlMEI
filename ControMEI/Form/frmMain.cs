@@ -10,6 +10,7 @@ namespace ControMEI
     {
         EmpresaDAO empresaDAO = new EmpresaDAO();
         int totalEmp = -1;
+        Thread t;
 
         public frmMain()
         {
@@ -20,7 +21,7 @@ namespace ControMEI
 
         private void checkQuantidadeEmpresas()
         {
-            Thread t = new Thread(new ThreadStart(ThreadProc));
+            t = new Thread(new ThreadStart(ThreadProc));
             t.Start();
         }
         public void ThreadProc()
@@ -76,12 +77,13 @@ namespace ControMEI
 
         private void sairToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            t.Abort();
             System.Windows.Forms.Application.Exit();
         }
 
         private void frmMain_Load(object sender, EventArgs e)
         {
-            menuStrip1.Enabled = false;
+            //menuStrip1.Enabled = false;
             if (totalEmp <= 0)
             {                
                 frmCadEmpresa frmCadEmpresa = new frmCadEmpresa();
@@ -91,6 +93,12 @@ namespace ControMEI
             {
                 //carregar menu para listar empresas
             }
+        }
+
+        private void frmMain_FormClosing(object sender, FormClosingEventArgs e)
+        {            
+            t.Abort();
+            System.Windows.Forms.Application.Exit();
         }
     }
 }
