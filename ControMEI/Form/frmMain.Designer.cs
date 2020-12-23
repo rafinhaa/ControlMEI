@@ -93,7 +93,7 @@
             // receitaToolStripMenuItem1
             // 
             this.receitaToolStripMenuItem1.Name = "receitaToolStripMenuItem1";
-            this.receitaToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
+            this.receitaToolStripMenuItem1.Size = new System.Drawing.Size(144, 22);
             this.receitaToolStripMenuItem1.Text = "Recebimento";
             this.receitaToolStripMenuItem1.Click += new System.EventHandler(this.receitaToolStripMenuItem1_Click);
             // 
@@ -123,6 +123,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Form1";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
+            this.Load += new System.EventHandler(this.frmMain_Load);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);

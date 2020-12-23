@@ -1,9 +1,12 @@
 # ControlMEI
 
-Programado com Visual Studio
+Programado com Visual Studio 2019
 
 
 CHANGLOG:
+
+v0.7b - 23/12/2020
+- Criado Thread ThreadProc para monitorar a quantidade de empresas cadastradas
 
 v0.6b - 04/04/2020
 - Criado botão de atualizar nofrmConRecebimento

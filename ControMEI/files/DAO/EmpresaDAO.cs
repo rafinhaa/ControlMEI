@@ -207,5 +207,28 @@ namespace ControMEI.files.DAO
                 MessageBox.Show("ERRO " + ex.Message);
             }
         }
+        public int checkEmpresa()
+        {
+            int result = 0;
+            try
+            {
+                Open();
+                sql = "SELECT COUNT(*) as countEmp FROM  Empresa";
+                cmd = new SQLiteCommand(sql, sqliteConnection);
+                dr = cmd.ExecuteReader();
+                if (dr.HasRows)
+                {
+                    dr.Read();
+                    result = dr.GetInt32(dr.GetOrdinal("countEmp"));
+                }
+                dr.Close();
+                cmd.Dispose();
+            }
+            catch (SqlException ex)
+            {
+                //return "Erro no comando sql:\n" + ex.Message;
+            }
+            return result;
+        }
     }
 }

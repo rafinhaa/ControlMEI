@@ -1,17 +1,40 @@
 ﻿using System;
 using System.Linq;
+using System.Threading;
 using System.Windows.Forms;
 using ControMEI.files.DAO;
 
 namespace ControMEI
 {
     public partial class frmMain : Form
-    {   
+    {
+        EmpresaDAO empresaDAO = new EmpresaDAO();
+        int totalEmp = -1;
+
         public frmMain()
         {
             InitializeComponent();
             BD.CriarBancoSQLite();
+            checkQuantidadeEmpresas();
         }
+
+        private void checkQuantidadeEmpresas()
+        {
+            Thread t = new Thread(new ThreadStart(ThreadProc));
+            t.Start();
+        }
+        public void ThreadProc()
+        {            
+            while(totalEmp <= 0)
+            {
+                totalEmp = empresaDAO.checkEmpresa();
+                Thread.Sleep(100);
+            }            
+            menuStrip1.Invoke((MethodInvoker)delegate {
+                menuStrip1.Enabled = true;
+            });
+        }
+
         private void OpenForm<T>(T meuFormulario) where T : Form
         {
             if (!Application.OpenForms.OfType<T>().Any())
@@ -54,6 +77,20 @@ namespace ControMEI
         private void sairToolStripMenuItem_Click(object sender, EventArgs e)
         {
             System.Windows.Forms.Application.Exit();
+        }
+
+        private void frmMain_Load(object sender, EventArgs e)
+        {
+            menuStrip1.Enabled = false;
+            if (totalEmp <= 0)
+            {                
+                frmCadEmpresa frmCadEmpresa = new frmCadEmpresa();
+                OpenForm(frmCadEmpresa);                
+            }
+            else if (totalEmp > 1)
+            {
+                //carregar menu para listar empresas
+            }
         }
     }
 }

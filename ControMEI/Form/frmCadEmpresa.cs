@@ -33,7 +33,7 @@ namespace ControMEI
             if (Util.validarEmpresa(empresa))
             {
                 EmpresaDAO empresaDAO = new EmpresaDAO();
-                MessageBox.Show(empresaDAO.Insert(empresa));
+                MessageBox.Show(empresaDAO.Insert(empresa));                
             }
         }
 
@@ -50,6 +50,11 @@ namespace ControMEI
         }
 
         private void mskCNPJ_Leave(object sender, EventArgs e)
+        {
+
+        }
+
+        private void frmCadEmpresa_Load(object sender, EventArgs e)
         {
 
         }

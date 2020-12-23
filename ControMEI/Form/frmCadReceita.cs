@@ -45,5 +45,10 @@ namespace ControMEI
                 MessageBox.Show(recebimentoDAO.Insert(recebimento));
             }
         }
+
+        private void frmCadReceita_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

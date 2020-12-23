@@ -277,6 +277,7 @@
             this.Name = "frmCadEmpresa";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Cadastro da Empresa";
+            this.Load += new System.EventHandler(this.frmCadEmpresa_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
