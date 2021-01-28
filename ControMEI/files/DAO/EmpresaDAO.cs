@@ -103,7 +103,7 @@ namespace ControMEI.files.DAO
             }
 
         }
-        public Empresa Select(Empresa empresa)
+        public Empresa Select(int id)
         {
             Empresa empresaTemp = null;
             try
@@ -111,12 +111,12 @@ namespace ControMEI.files.DAO
                 Open();
                 sql = "SELECT * FROM Empresa WHERE id = @id";
                 cmd = new SQLiteCommand(sql, sqliteConnection);
-                cmd.Parameters.AddWithValue("@id", empresa.Id);
+                cmd.Parameters.AddWithValue("@id", id);
                 dr = cmd.ExecuteReader();
                 if (dr.HasRows)
                 {
                     dr.Read();
-                    empresaTemp = new Empresa(empresa.Id,
+                    empresaTemp = new Empresa(id,
                         dr["razaosocial"].ToString(),
                         dr["cnpj"].ToString(),
                         dr["cep"].ToString(),
@@ -206,29 +206,6 @@ namespace ControMEI.files.DAO
             {
                 MessageBox.Show("ERRO " + ex.Message);
             }
-        }
-        public int checkEmpresa()
-        {
-            int result = 0;
-            try
-            {
-                Open();
-                sql = "SELECT COUNT(*) as countEmp FROM  Empresa";
-                cmd = new SQLiteCommand(sql, sqliteConnection);
-                dr = cmd.ExecuteReader();
-                if (dr.HasRows)
-                {
-                    dr.Read();
-                    result = dr.GetInt32(dr.GetOrdinal("countEmp"));
-                }
-                dr.Close();
-                cmd.Dispose();
-            }
-            catch (SqlException ex)
-            {
-                //return "Erro no comando sql:\n" + ex.Message;
-            }
-            return result;
         }
     }
 }

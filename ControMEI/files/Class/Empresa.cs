@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ControMEI.files.Class
 {
-    class Empresa
+    public class Empresa
     {
         private int id;
         private string cnpj;
@@ -52,6 +52,10 @@ namespace ControMEI.files.Class
         public Empresa(int id)
         {
             this.Id = id;
+        }
+        public Empresa()
+        {
+
         }
 
         public int Id { get => id; set => id = value; }

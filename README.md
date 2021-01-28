@@ -8,6 +8,11 @@ Software de gerencia para Micro Empreendedor Individual (MEI)
 
 ### CHANGLOG:
 
+##### v0.8b - 28/01/2021
+- Criado método para identificar se nao tem nenhuma empresa cadastrada
+- Apos cadastro de empresa habilitar menu
+- Removido a ThreadProc
+
 ##### v0.7.1b - 23/12/2020
 - Criado método para fechar a Thread quando a aplicação for encerrada
 

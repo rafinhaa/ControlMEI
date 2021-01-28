@@ -9,8 +9,8 @@ namespace ControMEI
 {
     public partial class frmCadEmpresa : Form
     {
-        
-
+        EmpresaDAO empresaDAO = new EmpresaDAO();
+        public bool firstUse;
         public frmCadEmpresa()
         {
             InitializeComponent();            
@@ -31,9 +31,13 @@ namespace ControMEI
                 txtEmail.Text
                 );
             if (Util.validarEmpresa(empresa))
-            {
-                EmpresaDAO empresaDAO = new EmpresaDAO();
-                MessageBox.Show(empresaDAO.Insert(empresa));                
+            {                
+                MessageBox.Show(empresaDAO.Insert(empresa));
+                ((frmMain)this.MdiParent).updateEmpresaList();
+                if (firstUse)
+                {
+                    this.Dispose();
+                }
             }
         }
 

@@ -50,7 +50,7 @@
             this.label11 = new System.Windows.Forms.Label();
             this.mskTelefone = new System.Windows.Forms.MaskedTextBox();
             this.txtEmail = new System.Windows.Forms.TextBox();
-            this.btnSalvar = new System.Windows.Forms.Button();
+            this.btnSalvarOuAtualizar = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label1
@@ -236,22 +236,22 @@
             this.txtEmail.TabIndex = 17;
             this.txtEmail.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtEmail_KeyPress);
             // 
-            // btnSalvar
+            // btnSalvarOuAtualizar
             // 
-            this.btnSalvar.Location = new System.Drawing.Point(15, 178);
-            this.btnSalvar.Name = "btnSalvar";
-            this.btnSalvar.Size = new System.Drawing.Size(75, 23);
-            this.btnSalvar.TabIndex = 18;
-            this.btnSalvar.Text = "Salvar";
-            this.btnSalvar.UseVisualStyleBackColor = true;
-            this.btnSalvar.Click += new System.EventHandler(this.btnSalvar_Click);
+            this.btnSalvarOuAtualizar.Location = new System.Drawing.Point(15, 178);
+            this.btnSalvarOuAtualizar.Name = "btnSalvarOuAtualizar";
+            this.btnSalvarOuAtualizar.Size = new System.Drawing.Size(75, 23);
+            this.btnSalvarOuAtualizar.TabIndex = 18;
+            this.btnSalvarOuAtualizar.Text = "Salvar";
+            this.btnSalvarOuAtualizar.UseVisualStyleBackColor = true;
+            this.btnSalvarOuAtualizar.Click += new System.EventHandler(this.btnSalvar_Click);
             // 
             // frmCadEmpresa
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(638, 213);
-            this.Controls.Add(this.btnSalvar);
+            this.Controls.Add(this.btnSalvarOuAtualizar);
             this.Controls.Add(this.txtEmail);
             this.Controls.Add(this.mskTelefone);
             this.Controls.Add(this.label11);
@@ -306,6 +306,6 @@
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.MaskedTextBox mskTelefone;
         private System.Windows.Forms.TextBox txtEmail;
-        private System.Windows.Forms.Button btnSalvar;
+        private System.Windows.Forms.Button btnSalvarOuAtualizar;
     }
 }

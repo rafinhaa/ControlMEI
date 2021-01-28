@@ -39,7 +39,6 @@ C:\Users\Rafael Soncine\Source\Repos\ControlMEI\ControMEI\obj\Debug\ControMEI.Fo
 C:\Users\Rafael Soncine\Source\Repos\ControlMEI\ControMEI\obj\Debug\ControMEI.frmCadEmpresa.resources
 C:\Users\Rafael Soncine\Source\Repos\ControlMEI\ControMEI\obj\Debug\ControMEI.frmCadReceita.resources
 C:\Users\Rafael Soncine\Source\Repos\ControlMEI\ControMEI\obj\Debug\ControMEI.frmMain.resources
-C:\Users\Rafael Soncine\Source\Repos\ControlMEI\ControMEI\obj\Debug\ControMEI.frmSelecionarEmpresa.resources
 C:\Users\Rafael Soncine\Source\Repos\ControlMEI\ControMEI\obj\Debug\ControMEI.Properties.Resources.resources
 C:\Users\Rafael Soncine\Source\Repos\ControlMEI\ControMEI\obj\Debug\ControMEI.csproj.GenerateResource.cache
 C:\Users\Rafael Soncine\Source\Repos\ControlMEI\ControMEI\obj\Debug\ControMEI.csproj.CoreCompileInputs.cache

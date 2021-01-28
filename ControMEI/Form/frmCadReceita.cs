@@ -7,11 +7,13 @@ using System.Windows.Forms;
 namespace ControMEI
 {
     public partial class frmCadReceita : Form
-    {       
+    {
+        private Empresa empresa;
 
-        public frmCadReceita()
+        public frmCadReceita(Empresa empresa)
         {
             InitializeComponent();
+            this.empresa = empresa;
         }
         private void textValor_KeyPress(object sender, KeyPressEventArgs e)
         {
@@ -32,7 +34,7 @@ namespace ControMEI
         private void btnSalvar_Click(object sender, EventArgs e)
         {
             Recebimento recebimento = new Recebimento(
-                new Empresa(1),
+                empresa,
                 txtDescrição.Text,
                 cmbEmissaoNF.SelectedIndex,
                 dateTimePicker1.Value.ToShortDateString(),

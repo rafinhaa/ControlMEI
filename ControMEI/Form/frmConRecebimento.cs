@@ -17,10 +17,12 @@ namespace ControMEI
     {
         RecebimentoDAO recebimentoDAO = new RecebimentoDAO();
         Recebimento recebimento;
+        private Empresa empresa;
 
-        public Form1()
+        public Form1(Empresa empresa)
         {
             InitializeComponent();
+            this.empresa = empresa;
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -36,7 +38,7 @@ namespace ControMEI
         private void btnBuscar_Click(object sender, EventArgs e)
         {
             Recebimento recebimento = new Recebimento(
-                new Empresa(1),
+                empresa,
                 txtDescrição.Text,
                 cmbEmissaoNF.SelectedIndex,
                 dateTimePicker1.Value.ToShortDateString(),
