@@ -16,11 +16,10 @@ namespace ControMEI.files.Class
         private float valor;        
         private Empresa empresa;
 
-        public Recebimento(int id)
+        public Recebimento(Empresa empresa)
         {
-            this.Id = id;
+            this.empresa = empresa;
         }
-
         public Recebimento(Empresa empresa, string descricao, int notaFiscal, string data, int tipo, float valor)
         {
             this.Descricao = descricao;
@@ -30,7 +29,6 @@ namespace ControMEI.files.Class
             this.Valor = valor;
             this.Empresa = empresa;
         }
-
         public Recebimento(Empresa empresa, int id, string descricao, int notaFiscal, string data, int tipo, float valor )
         {
             this.Id = id;
@@ -49,5 +47,16 @@ namespace ControMEI.files.Class
         public int Tipo { get => tipo; set => tipo = value; }
         public float Valor { get => valor; set => valor = value; }
         internal Empresa Empresa { get => empresa; set => empresa = value; }
+
+        public override string ToString()
+        {
+            return "Id: " + Id +
+                    "\nDescricao: " + Descricao +
+                    "\nNotaFiscal: " + NotaFiscal +
+                    "\nData: " + Data +
+                    "\nTipo: " + Tipo +
+                    "\nTipoalor: " + Valor +
+                    "\nEmpresa: " + Empresa;
+        }
     }
 }

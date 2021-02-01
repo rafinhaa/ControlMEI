@@ -12,7 +12,8 @@ namespace ControMEI
     {
         EmpresaDAO empresaDAO = new EmpresaDAO();                                
         private List<Empresa> empresas;
-        Empresa empresa;
+        public Empresa empresa = null;
+        private string titleMainForm = "ControlMEI - Gestão para Micro Empreendedor Individual";
 
         public frmMain()
         {
@@ -56,6 +57,11 @@ namespace ControMEI
             Form1 frmCadReceita = new Form1(empresa);
             OpenForm(frmCadReceita);
         }
+        private void empresasToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmSelEmpresa frmSelEmpresa = new frmSelEmpresa(empresas);
+            OpenForm(frmSelEmpresa);
+        }
         private void sqliteToolStripMenuItem_Click(object sender, EventArgs e)
         {   
         }
@@ -63,12 +69,10 @@ namespace ControMEI
         {            
             System.Windows.Forms.Application.Exit();
         }
-
         private void frmMain_Load(object sender, EventArgs e)
         {
             checkEmpresasInDataBase();
         }
-
         private void checkEmpresasInDataBase()
         {
             int total_empresas = empresas.Count;
@@ -80,23 +84,60 @@ namespace ControMEI
             }
             else if (total_empresas == 1)
             {
-                empresa = empresas.ElementAt(0);
-                menuStrip1.Enabled = true;                
+                menuStrip1.Enabled = true;
+                empresa = empresas.ElementAt(0);                               
             }else if (total_empresas > 1)
             {
-                //carregar menu para listar empresas
-                menuStrip1.Enabled = true;
+                menuStrip1.Enabled = false;
+                frmSelEmpresa frmSelEmpresa = new frmSelEmpresa(empresas);                
+                OpenForm(frmSelEmpresa);                
             }
-        }
-
-        private void frmMain_FormClosing(object sender, FormClosingEventArgs e)
-        {   
-            System.Windows.Forms.Application.Exit();
-        }
+        }        
         public void updateEmpresaList()
         {
             empresas = empresaDAO.SelectAll();
             checkEmpresasInDataBase();
+        }
+        public bool updateEmpresaSelected(Empresa empresa)
+        {
+            if(empresa != null)
+            {
+                this.empresa = empresa;
+                menuStrip1.Enabled = true;
+                this.Text = titleMainForm + " | Empresa: " + empresa.RazaoSocial + " CNPJ: " + empresa.Cnpj;
+                return true;
+            }
+            else
+            {
+                return false;
+            }            
+        }
+        private void frmMain_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            System.Windows.Forms.Application.Exit();
+        }
+
+        private void novaEmpresaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmCadEmpresa frmCadEmpresa = new frmCadEmpresa();
+            OpenForm(frmCadEmpresa);
+        }
+
+        private void sairToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            System.Windows.Forms.Application.Exit();
+        }
+
+        private void alterarPerfilToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmSelEmpresa frmSelEmpresa = new frmSelEmpresa(empresas);
+            OpenForm(frmSelEmpresa);
+        }
+
+        private void empresaToolStripMenuItem_Click_1(object sender, EventArgs e)
+        {
+            frmConEmpresa frmConEmpresa = new frmConEmpresa(empresa);
+            OpenForm(frmConEmpresa);
         }
     }
 }

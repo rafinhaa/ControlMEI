@@ -98,8 +98,8 @@
             this.cmbEmissaoNF.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbEmissaoNF.FormattingEnabled = true;
             this.cmbEmissaoNF.Items.AddRange(new object[] {
-            "Sim",
-            "Não"});
+            "Não",
+            "Sim"});
             this.cmbEmissaoNF.Location = new System.Drawing.Point(139, 46);
             this.cmbEmissaoNF.Name = "cmbEmissaoNF";
             this.cmbEmissaoNF.Size = new System.Drawing.Size(65, 21);

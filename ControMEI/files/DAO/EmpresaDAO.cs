@@ -150,8 +150,8 @@ namespace ControMEI.files.DAO
                 while (dr.Read())
                 {
                     empresaTemp.Add(new Empresa(dr.GetInt32(dr.GetOrdinal("Id")),
-                        dr["razaosocial"].ToString(),
                         dr["cnpj"].ToString(),
+                        dr["razaosocial"].ToString(),
                         dr["cep"].ToString(),
                         dr["endereco"].ToString(),
                         dr["numero"].ToString(),
@@ -171,7 +171,7 @@ namespace ControMEI.files.DAO
             }
             return empresaTemp;
         }
-        public void Update(Empresa empresa)
+        public bool Update(Empresa empresa)
         {
             int retorno;
             string sql;
@@ -191,20 +191,22 @@ namespace ControMEI.files.DAO
                 cmd.Parameters.AddWithValue("@cidade", empresa.Cidade);
                 cmd.Parameters.AddWithValue("@estado", empresa.Estado);
                 cmd.Parameters.AddWithValue("@email", empresa.Email);
+                cmd.Parameters.AddWithValue("@id", empresa.Id);                
                 retorno = cmd.ExecuteNonQuery();
+                cmd.Dispose();
                 if (retorno > 0)
                 {
-                    MessageBox.Show("Atualização efetuado");
+                    return true;
                 }
                 else
                 {
-                    MessageBox.Show("Atualização não realizado");
-                }
-                cmd.Dispose();
+                    return false;
+                }                
             }
             catch (Exception ex)
             {
                 MessageBox.Show("ERRO " + ex.Message);
+                return false;
             }
         }
     }

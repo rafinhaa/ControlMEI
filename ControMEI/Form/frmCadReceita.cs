@@ -50,7 +50,7 @@ namespace ControMEI
 
         private void frmCadReceita_Load(object sender, EventArgs e)
         {
-
+            dateTimePicker1.Value = DateTime.Now;
         }
 
         private void cmbTipo_SelectedIndexChanged(object sender, EventArgs e)

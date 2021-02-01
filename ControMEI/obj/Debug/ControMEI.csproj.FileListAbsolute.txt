@@ -45,3 +45,5 @@ C:\Users\Rafael Soncine\Source\Repos\ControlMEI\ControMEI\obj\Debug\ControMEI.cs
 C:\Users\Rafael Soncine\Source\Repos\ControlMEI\ControMEI\obj\Debug\ControMEI.csproj.CopyComplete
 C:\Users\Rafael Soncine\Source\Repos\ControlMEI\ControMEI\obj\Debug\ControMEI.exe
 C:\Users\Rafael Soncine\Source\Repos\ControlMEI\ControMEI\obj\Debug\ControMEI.pdb
+C:\Users\Rafael Soncine\source\repos\ControlMEI\ControMEI\obj\Debug\ControMEI.frmSelEmpresa.resources
+C:\Users\Rafael Soncine\source\repos\ControlMEI\ControMEI\obj\Debug\ControMEI.frmConEmpresa.resources

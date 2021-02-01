@@ -53,10 +53,6 @@ namespace ControMEI.files.Class
         {
             this.Id = id;
         }
-        public Empresa()
-        {
-
-        }
 
         public int Id { get => id; set => id = value; }
         public string Cnpj { get => cnpj; set => cnpj = value; }
@@ -70,5 +66,21 @@ namespace ControMEI.files.Class
         public string Cidade { get => cidade; set => cidade = value; }
         public string Estado { get => estado; set => estado = value; }
         public string Email { get => email; set => email = value; }
+
+        public override string ToString()
+        {
+            return "Id: " + Id +
+                    "\nCnpj: " + Cnpj +
+                    "\nRazaoSocial: " + RazaoSocial +
+                    "\nCep: " + Cep +
+                    "\nEndereco: " + Endereco +
+                    "\nNumero: " + Numero +
+                    "\nComplemento: " + Complemento +
+                    "\nBairro: " + Bairro +
+                    "\nTelefone: " + Telefone +
+                    "\nCidade: " + Cidade +
+                    "\nEstado: " + Estado +
+                    "\nEmail: " + Email;
+        }
     }
 }

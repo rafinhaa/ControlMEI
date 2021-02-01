@@ -22,18 +22,14 @@ namespace ControMEI
         public Form1(Empresa empresa)
         {
             InitializeComponent();
-            this.empresa = empresa;
+            this.empresa = empresa;            
         }
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            //RecebimentoDAO recebimentoDAO = new RecebimentoDAO();
-            //dataGridView1 = recebimentoDAO.D();
-            //dataGridView1.DataSource = recebimentoDAO.SelectAll();
-            //dataGridView1.DataSource = recebimentoDAO.SelectAllDataSet().Tables[0];
+            dateTimePicker1.Value = DateTime.Now;
+            recebimento = new Recebimento(empresa);
             updateTable();
-            //dataGridView1.Columns["id"].Visible = false;
-            //dataGridView1.Columns["id_empresa"].Visible = false;
         }
         private void btnBuscar_Click(object sender, EventArgs e)
         {
@@ -47,20 +43,7 @@ namespace ControMEI
                 );            
             dataGridView1.DataSource = recebimentoDAO.SelectAllDataTable(Util.validarConRecebimento(recebimento));
         }
-
-        private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
-        {            
-            recebimento = new Recebimento(new Empresa(Convert.ToInt32(dataGridView1.CurrentRow.Cells[1].Value)),
-                Convert.ToInt32(dataGridView1.CurrentRow.Cells[0].Value),
-                dataGridView1.CurrentRow.Cells[2].Value.ToString(),
-                Convert.ToInt32(dataGridView1.CurrentRow.Cells[5].Value),
-                dataGridView1.CurrentRow.Cells[3].Value.ToString(),
-                Convert.ToInt32(dataGridView1.CurrentRow.Cells[4].Value),
-                float.Parse(dataGridView1.CurrentRow.Cells[6].Value.ToString())
-                );
-            bindListToFields(recebimento);
-        }
-
+        
         private void bindListToFields(Recebimento recebimento)
         {
             txtDescrição.Text = recebimento.Descricao;
@@ -72,12 +55,7 @@ namespace ControMEI
 
         private void updateTable()
         {
-            dataGridView1.DataSource = recebimentoDAO.SelectAllDataTable();
-        }
-
-        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
+            dataGridView1.DataSource = recebimentoDAO.SelectAllList(empresa);
         }
 
         private void btnExcluir_Click(object sender, EventArgs e)
@@ -95,12 +73,16 @@ namespace ControMEI
             recebimento.Valor = Util.converterStringEmFloat(txtValor.Text);             
             if (Util.validarRecebimento(recebimento))
             {
-                RecebimentoDAO recebimentoDAO = new RecebimentoDAO();
-                MessageBox.Show(recebimentoDAO.Update(recebimento));
-                updateTable();
+                if (recebimentoDAO.Update(recebimento)) {
+                    MessageBox.Show("Atualização efetuada com sucesso!");                    
+                    updateTable();
+                }
+                else
+                {
+                    MessageBox.Show("Não foi possivel efetuar a atualização");
+                }
             }
         }
-
         private void txtValor_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (e.KeyChar == '.')
@@ -115,6 +97,12 @@ namespace ControMEI
             {
                 e.Handled = true;
             }
+        }
+
+        private void dataGridView1_CellClick_1(object sender, DataGridViewCellEventArgs e)
+        {
+            recebimento = (Recebimento)dataGridView1.CurrentRow.DataBoundItem;
+            bindListToFields(recebimento);
         }
     }
 }

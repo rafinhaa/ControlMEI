@@ -1,12 +1,20 @@
 # ControlMEI
 
 Software de gerencia para Micro Empreendedor Individual (MEI)
-- Cadastro de empresa
+- Cadastro de empresas
 - Cadastro de receita (Revenda de Mercadorias, Venda de produtos e Prestação de Serviços)
 - Consulta a receitadas cadastradas
 - Emissão de relatórios
 
 ### CHANGLOG:
+
+##### v0.9b - 01/02/2021
+- Criado frmSelEmpresa
+- Caso tenha mais que uma empresa abre o frmSelEmpresa para selecionar a empresa
+- Atualizado o metodo Update das classes EmpresaDAO e RecebimentoDAO
+- Criado frmConEmpresa
+- Alterado a ordem do MenuStrip1
+
 
 ##### v0.8b - 28/01/2021
 - Criado método para identificar se nao tem nenhuma empresa cadastrada

@@ -133,14 +133,15 @@ namespace ControMEI.files.DAO
             }
             return recebimentoTemp;
         }
-        public List<Recebimento> SelectAllList()
+        public List<Recebimento> SelectAllList(Empresa empresa)
         {
             List<Recebimento> recebimentoTemp = new List<Recebimento>();
             try
             {
                 Open();
-                sql = "SELECT * FROM Recebimento";
+                sql = "SELECT * FROM Recebimento WHERE id_empresa = @id_empresa";
                 cmd = new SQLiteCommand(sql, sqliteConnection);
+                cmd.Parameters.AddWithValue("@id_empresa", empresa.Id);
                 dr = cmd.ExecuteReader();
                 while (dr.Read())
                 {
@@ -163,18 +164,21 @@ namespace ControMEI.files.DAO
             }
             return recebimentoTemp;
         }
-        public DataTable SelectAllDataTable()
+        public DataTable SelectAllDataTable(Empresa empresa)
         {
             var dataTable = new DataTable();
             try
             {
                 Open();                
-                sql = "SELECT id, id_empresa, descricao, data, tipo, fiscal, round(valor,2) AS valor from recebimento ORDER BY data ASC;";
+                sql = "SELECT id, id_empresa, descricao, data, tipo, fiscal, round(valor,2) AS valor from recebimento WHERE id_empresa = @id_empresa ORDER BY data ASC";                
+                cmd.Parameters.AddWithValue("@id_empresa", empresa.Id);
                 SQLiteDataAdapter sqlda = new SQLiteDataAdapter(sql, sqliteConnection);
+                sqlda.SelectCommand.Parameters.AddWithValue("@id_empresa", empresa.Id);
                 using (dataTable)
                 {
                     sqlda.Fill(dataTable);
                 }
+                sqlda.Dispose();
                 Close();
             }
             catch (Exception ex)
@@ -204,27 +208,8 @@ namespace ControMEI.files.DAO
                 MessageBox.Show("ERRO " + ex.Message);
             }
             return dataTable;
-        }
-        public DataSet SelectAllDataSet()
-        {
-            var dataSet = new DataSet();
-            try
-            {
-                Open();
-                sql = "SELECT * FROM Recebimento";
-                SQLiteDataAdapter sqlda = new SQLiteDataAdapter(sql, sqliteConnection);
-                using (dataSet)
-                {
-                    sqlda.Fill(dataSet,"Info");
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("ERRO " + ex.Message);
-            }
-            return dataSet;
-        }
-        public string Update(Recebimento recebimento)
+        }        
+        public bool Update(Recebimento recebimento)
         {
             int retorno;
             string sql;
@@ -244,16 +229,16 @@ namespace ControMEI.files.DAO
                 cmd.Dispose();
                 if (retorno > 0)
                 {
-                    return "Atualização efetuada com sucesso!";
+                    return true;
                 }
                 else
                 {
-                    return "Não foi possível efetuar a atualização!";
+                    return false;
                 }                
             }
             catch (Exception ex)
             {
-                return "ERRO " + ex.Message;
+                return false;
             }
         }
     }
