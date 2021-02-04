@@ -8,6 +8,10 @@ Software de gerencia para Micro Empreendedor Individual (MEI)
 
 ### CHANGLOG:
 
+##### v0.10b - 04/02/2021
+- Criado frmSobre
+- Criado metodo para limpar campos em frmConRecebimento
+
 ##### v0.9b - 01/02/2021
 - Criado frmSelEmpresa
 - Caso tenha mais que uma empresa abre o frmSelEmpresa para selecionar a empresa

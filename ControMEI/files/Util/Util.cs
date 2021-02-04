@@ -217,6 +217,7 @@ namespace ControMEI.files.Util
 			{
 				sql += " valor = " + recebimento.Valor + " AND";
 			}
+			Console.WriteLine(sql.Remove(sql.Length - 3));
 			return sql.Remove(sql.Length -3 );
 		}
 	}

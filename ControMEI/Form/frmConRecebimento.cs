@@ -30,6 +30,10 @@ namespace ControMEI
             dateTimePicker1.Value = DateTime.Now;
             recebimento = new Recebimento(empresa);
             updateTable();
+            dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+            dataGridView1.Columns[dataGridView1.ColumnCount - 1].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            dataGridView1.Columns["Id"].Visible = false;
+            
         }
         private void btnBuscar_Click(object sender, EventArgs e)
         {
@@ -62,6 +66,7 @@ namespace ControMEI
         {
             recebimentoDAO.Delete(recebimento);
             updateTable();
+            limpaCampos();
         }
 
         private void btnAlterar_Click(object sender, EventArgs e)
@@ -98,11 +103,17 @@ namespace ControMEI
                 e.Handled = true;
             }
         }
-
         private void dataGridView1_CellClick_1(object sender, DataGridViewCellEventArgs e)
         {
             recebimento = (Recebimento)dataGridView1.CurrentRow.DataBoundItem;
             bindListToFields(recebimento);
+        }
+        private void limpaCampos()
+        {
+            foreach (TextBox tb in this.Controls.OfType<TextBox>())
+            {
+                tb.Text = String.Empty;
+            }
         }
     }
 }

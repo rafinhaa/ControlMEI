@@ -139,5 +139,11 @@ namespace ControMEI
             frmConEmpresa frmConEmpresa = new frmConEmpresa(empresa);
             OpenForm(frmConEmpresa);
         }
+
+        private void sobreToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmSobre frmSobre = new frmSobre();
+            OpenForm(frmSobre);
+        }
     }
 }
