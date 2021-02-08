@@ -2,6 +2,7 @@
 using ControMEI.files.DAO;
 using ControMEI.files.Util;
 using System;
+using System.Linq;
 using System.Windows.Forms;
 
 
@@ -34,10 +35,11 @@ namespace ControMEI
             {                
                 MessageBox.Show(empresaDAO.Insert(empresa));
                 ((frmMain)this.MdiParent).updateEmpresaList();
+                this.limpaCampos();
                 if (firstUse)
                 {
                     this.Dispose();
-                }
+                }                
             }
         }
 
@@ -61,6 +63,13 @@ namespace ControMEI
         private void frmCadEmpresa_Load(object sender, EventArgs e)
         {
 
+        }
+        private void limpaCampos()
+        {
+            foreach (TextBox tb in this.Controls.OfType<TextBox>())
+            {
+                tb.Text = "";
+            }
         }
     }
 }

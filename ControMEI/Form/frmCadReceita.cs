@@ -45,6 +45,7 @@ namespace ControMEI
             {
                 RecebimentoDAO recebimentoDAO = new RecebimentoDAO();
                 MessageBox.Show(recebimentoDAO.Insert(recebimento));
+                this.limpaCampos();
             }
         }
 
@@ -52,10 +53,12 @@ namespace ControMEI
         {
             dateTimePicker1.Value = DateTime.Now;
         }
-
-        private void cmbTipo_SelectedIndexChanged(object sender, EventArgs e)
+        private void limpaCampos()
         {
-
+            foreach (TextBox tb in this.Controls.OfType<TextBox>())
+            {
+                tb.Text = "";
+            }
         }
     }
 }

@@ -8,6 +8,10 @@ Software de gerencia para Micro Empreendedor Individual (MEI)
 
 ### CHANGLOG:
 
+##### v0.11b - 08/02/2021
+- Criado metodo para limpar campos em frmCadEmpresa.cs
+- Criado metodo para limpar campos em frmCadReceita.cs
+
 ##### v0.10b - 04/02/2021
 - Criado frmSobre
 - Criado metodo para limpar campos em frmConRecebimento
