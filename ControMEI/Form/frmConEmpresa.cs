@@ -36,7 +36,7 @@ namespace ControMEI
             mskTelefone.Text = empresa.Telefone;
             empresa.Cidade = txtCidade.Text;
             empresa.Estado = txtEstado.Text;
-            empresa.Email  = empresa.Email;
+            empresa.Email  = txtEmail.Text;
             if (Util.validarEmpresa(empresa))
             {
                 if (empresaDAO.Update(empresa))

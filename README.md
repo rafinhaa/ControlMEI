@@ -7,6 +7,8 @@ Software de gerencia para Micro Empreendedor Individual (MEI)
 - Emissão de relatórios
 
 ### CHANGLOG:
+##### v0.11.1b - 08/02/2021
+- Fix Bug - frmConEmpresa não salva alteração de e-mail
 
 ##### v0.11b - 08/02/2021
 - Criado metodo para limpar campos em frmCadEmpresa.cs
