@@ -51,14 +51,17 @@ namespace ControMEI
             // 
             // reportViewer1
             // 
+            this.reportViewer1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             reportDataSource1.Name = "DataSet1";
             reportDataSource1.Value = this.EmpresaBindingSource;
             this.reportViewer1.LocalReport.DataSources.Add(reportDataSource1);
             this.reportViewer1.LocalReport.ReportEmbeddedResource = "ControMEI.RelMensal.rdlc";
-            this.reportViewer1.Location = new System.Drawing.Point(-1, 87);
+            this.reportViewer1.Location = new System.Drawing.Point(12, 45);
             this.reportViewer1.Name = "reportViewer1";
             this.reportViewer1.ServerReport.BearerToken = null;
-            this.reportViewer1.Size = new System.Drawing.Size(762, 292);
+            this.reportViewer1.Size = new System.Drawing.Size(735, 320);
             this.reportViewer1.TabIndex = 0;
             // 
             // EmpresaTableAdapter
