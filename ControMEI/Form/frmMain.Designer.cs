@@ -140,8 +140,9 @@
             // gerarRelatóriosToolStripMenuItem
             // 
             this.gerarRelatóriosToolStripMenuItem.Name = "gerarRelatóriosToolStripMenuItem";
-            this.gerarRelatóriosToolStripMenuItem.Size = new System.Drawing.Size(157, 22);
+            this.gerarRelatóriosToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.gerarRelatóriosToolStripMenuItem.Text = "Gerar Relatórios";
+            this.gerarRelatóriosToolStripMenuItem.Click += new System.EventHandler(this.gerarRelatóriosToolStripMenuItem_Click);
             // 
             // ajudaToolStripMenuItem
             // 
@@ -154,7 +155,7 @@
             // sobreToolStripMenuItem
             // 
             this.sobreToolStripMenuItem.Name = "sobreToolStripMenuItem";
-            this.sobreToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.sobreToolStripMenuItem.Size = new System.Drawing.Size(104, 22);
             this.sobreToolStripMenuItem.Text = "Sobre";
             this.sobreToolStripMenuItem.Click += new System.EventHandler(this.sobreToolStripMenuItem_Click);
             // 

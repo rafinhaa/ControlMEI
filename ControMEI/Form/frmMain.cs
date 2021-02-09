@@ -145,5 +145,11 @@ namespace ControMEI
             frmSobre frmSobre = new frmSobre();
             OpenForm(frmSobre);
         }
+
+        private void gerarRelatóriosToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmRelMensal frmRelMensal = new frmRelMensal();
+            OpenForm(frmRelMensal);
+        }
     }
 }

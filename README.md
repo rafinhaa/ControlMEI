@@ -7,6 +7,11 @@ Software de gerencia para Micro Empreendedor Individual (MEI)
 - Emissão de relatórios
 
 ### CHANGLOG:
+##### v0.12b - 09/02/2021
+- Criado frmRelMensal
+- Adicionado o componente ReportViewerControl
+- Iniciado o designer do relatório da declaração mensal 
+
 ##### v0.11.1b - 08/02/2021
 - Fix Bug - frmConEmpresa não salva alteração de e-mail
 
