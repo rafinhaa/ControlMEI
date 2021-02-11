@@ -103,6 +103,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ControlMEI_DS.xsd</DependentUpon>
     </Compile>
+    <Compile Include="DataSet2.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DataSet2.xsd</DependentUpon>
+    </Compile>
     <Compile Include="files\Class\Empresa.cs" />
     <Compile Include="files\Class\Recebimento.cs" />
     <Compile Include="files\DAO\EmpresaDAO.cs" />
@@ -204,6 +209,17 @@
     </None>
     <None Include="ControlMEI_DS.xss">
       <DependentUpon>ControlMEI_DS.xsd</DependentUpon>
+    </None>
+    <None Include="DataSet2.xsc">
+      <DependentUpon>DataSet2.xsd</DependentUpon>
+    </None>
+    <None Include="DataSet2.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DataSet2.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="DataSet2.xss">
+      <DependentUpon>DataSet2.xsd</DependentUpon>
     </None>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">

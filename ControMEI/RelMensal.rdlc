@@ -9,11 +9,18 @@
       </ConnectionProperties>
       <rd:DataSourceID>5b496826-cc5b-4244-95be-be4918d3243c</rd:DataSourceID>
     </DataSource>
+    <DataSource Name="DataSet2">
+      <ConnectionProperties>
+        <DataProvider>System.Data.DataSet</DataProvider>
+        <ConnectString>/* Local Connection */</ConnectString>
+      </ConnectionProperties>
+      <rd:DataSourceID>b088c900-2eb7-4214-b355-8ceaceb54ab3</rd:DataSourceID>
+    </DataSource>
   </DataSources>
   <DataSets>
-    <DataSet Name="DataSet1">
+    <DataSet Name="DataSet2">
       <Query>
-        <DataSourceName>ControlMEI_DS</DataSourceName>
+        <DataSourceName>DataSet2</DataSourceName>
         <CommandText>/* Local Query */</CommandText>
       </Query>
       <Fields>
@@ -67,8 +74,8 @@
         </Field>
       </Fields>
       <rd:DataSetInfo>
-        <rd:DataSetName>ControlMEI_DS</rd:DataSetName>
-        <rd:SchemaPath>C:\Users\Rafael Soncine\source\repos\ControlMEI\ControMEI\ControlMEI_DS.xsd</rd:SchemaPath>
+        <rd:DataSetName>DataSet2</rd:DataSetName>
+        <rd:SchemaPath>C:\Users\Rafael Soncine\Source\Repos\ControlMEI\ControMEI\DataSet2.xsd</rd:SchemaPath>
         <rd:TableName>Empresa</rd:TableName>
         <rd:TableAdapterFillMethod>Fill</rd:TableAdapterFillMethod>
         <rd:TableAdapterGetDataMethod>GetData</rd:TableAdapterGetDataMethod>
@@ -787,7 +794,7 @@
                     <Paragraph>
                       <TextRuns>
                         <TextRun>
-                          <Value>=First(Fields!cnpj.Value, "DataSet1")</Value>
+                          <Value>=First(Fields!id.Value, "DataSet2")</Value>
                           <Style />
                         </TextRun>
                       </TextRuns>
@@ -1033,30 +1040,10 @@
       </Page>
     </ReportSection>
   </ReportSections>
-  <ReportParameters>
-    <ReportParameter Name="id_empresa">
-      <DataType>Integer</DataType>
-      <Prompt>ReportParameter1</Prompt>
-      <ValidValues>
-        <DataSetReference>
-          <DataSetName>DataSet1</DataSetName>
-          <ValueField>id</ValueField>
-          <LabelField>id</LabelField>
-        </DataSetReference>
-      </ValidValues>
-    </ReportParameter>
-  </ReportParameters>
   <ReportParametersLayout>
     <GridLayoutDefinition>
       <NumberOfColumns>4</NumberOfColumns>
       <NumberOfRows>2</NumberOfRows>
-      <CellDefinitions>
-        <CellDefinition>
-          <ColumnIndex>0</ColumnIndex>
-          <RowIndex>0</RowIndex>
-          <ParameterName>id_empresa</ParameterName>
-        </CellDefinition>
-      </CellDefinitions>
     </GridLayoutDefinition>
   </ReportParametersLayout>
   <rd:ReportUnitType>Cm</rd:ReportUnitType>

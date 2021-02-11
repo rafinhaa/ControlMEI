@@ -7,6 +7,9 @@ Software de gerencia para Micro Empreendedor Individual (MEI)
 - Emissão de relatórios
 
 ### CHANGLOG:
+##### v0.13b - 11/02/2021
+- Configurado o dataSource em frmRelMensal
+
 ##### v0.12.1b - 09/02/2021
 - finalizado o designer do relatório da declaração mensal
 

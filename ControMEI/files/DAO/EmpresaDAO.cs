@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Windows.Forms;
 using System.Data.SQLite;
+using System.Data;
 
 namespace ControMEI.files.DAO
 {
@@ -208,6 +209,29 @@ namespace ControMEI.files.DAO
                 MessageBox.Show("ERRO " + ex.Message);
                 return false;
             }
+        }
+        public DataTable SelectAllDataTable(Empresa empresa)
+        {
+            var dataTable = new DataTable();
+            try
+            {
+                Open();
+                sql = "SELECT * from empresa";
+                SQLiteDataAdapter sqlda = new SQLiteDataAdapter(sql, sqliteConnection);
+                sqlda.SelectCommand.Parameters.AddWithValue("@id_empresa", empresa.Id);
+                using (dataTable)
+                {
+                    sqlda.Fill(dataTable);
+                }
+                sqlda.Dispose();
+                Close();
+            }
+            catch (Exception ex)
+            {
+                Close();
+                MessageBox.Show("ERRO " + ex.Message);
+            }
+            return dataTable;
         }
     }
 }

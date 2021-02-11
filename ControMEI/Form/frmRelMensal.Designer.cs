@@ -30,11 +30,10 @@ namespace ControMEI
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            Microsoft.Reporting.WinForms.ReportDataSource reportDataSource1 = new Microsoft.Reporting.WinForms.ReportDataSource();
             this.EmpresaBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.ControlMEI_DS = new ControMEI.ControlMEI_DS();
-            this.reportViewer1 = new Microsoft.Reporting.WinForms.ReportViewer();
             this.EmpresaTableAdapter = new ControMEI.ControlMEI_DSTableAdapters.EmpresaTableAdapter();
+            this.reportViewer1 = new Microsoft.Reporting.WinForms.ReportViewer();
             ((System.ComponentModel.ISupportInitialize)(this.EmpresaBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ControlMEI_DS)).BeginInit();
             this.SuspendLayout();
@@ -49,24 +48,21 @@ namespace ControMEI
             this.ControlMEI_DS.DataSetName = "ControlMEI_DS";
             this.ControlMEI_DS.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
+            // EmpresaTableAdapter
+            // 
+            this.EmpresaTableAdapter.ClearBeforeFill = true;
+            // 
             // reportViewer1
             // 
             this.reportViewer1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            reportDataSource1.Name = "DataSet1";
-            reportDataSource1.Value = this.EmpresaBindingSource;
-            this.reportViewer1.LocalReport.DataSources.Add(reportDataSource1);
             this.reportViewer1.LocalReport.ReportEmbeddedResource = "ControMEI.RelMensal.rdlc";
             this.reportViewer1.Location = new System.Drawing.Point(12, 45);
             this.reportViewer1.Name = "reportViewer1";
             this.reportViewer1.ServerReport.BearerToken = null;
             this.reportViewer1.Size = new System.Drawing.Size(735, 320);
             this.reportViewer1.TabIndex = 0;
-            // 
-            // EmpresaTableAdapter
-            // 
-            this.EmpresaTableAdapter.ClearBeforeFill = true;
             // 
             // frmRelMensal
             // 
@@ -85,10 +81,9 @@ namespace ControMEI
         }
 
         #endregion
-
-        private Microsoft.Reporting.WinForms.ReportViewer reportViewer1;
         private System.Windows.Forms.BindingSource EmpresaBindingSource;
         private ControlMEI_DS ControlMEI_DS;
         private ControlMEI_DSTableAdapters.EmpresaTableAdapter EmpresaTableAdapter;
+        private Microsoft.Reporting.WinForms.ReportViewer reportViewer1;
     }
 }

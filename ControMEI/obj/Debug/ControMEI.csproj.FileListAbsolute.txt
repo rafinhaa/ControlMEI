@@ -34,7 +34,6 @@ C:\Users\Rafael Soncine\Source\Repos\ControlMEI\ControMEI\bin\Debug\EntityFramew
 C:\Users\Rafael Soncine\Source\Repos\ControlMEI\ControMEI\bin\Debug\EntityFramework.SqlServer.xml
 C:\Users\Rafael Soncine\Source\Repos\ControlMEI\ControMEI\bin\Debug\System.Data.SQLite.xml
 C:\Users\Rafael Soncine\Source\Repos\ControlMEI\ControMEI\bin\Debug\System.Data.SQLite.dll.config
-C:\Users\Rafael Soncine\Source\Repos\ControlMEI\ControMEI\obj\Debug\ControMEI.csprojAssemblyReference.cache
 C:\Users\Rafael Soncine\Source\Repos\ControlMEI\ControMEI\obj\Debug\ControMEI.Form1.resources
 C:\Users\Rafael Soncine\Source\Repos\ControlMEI\ControMEI\obj\Debug\ControMEI.frmCadEmpresa.resources
 C:\Users\Rafael Soncine\Source\Repos\ControlMEI\ControMEI\obj\Debug\ControMEI.frmCadReceita.resources
@@ -105,3 +104,4 @@ C:\Users\Rafael Soncine\source\repos\ControlMEI\ControMEI\bin\Debug\pt\Microsoft
 C:\Users\Rafael Soncine\source\repos\ControlMEI\ControMEI\bin\Debug\ru\Microsoft.ReportViewer.WinForms.resources.dll
 C:\Users\Rafael Soncine\source\repos\ControlMEI\ControMEI\bin\Debug\zh-CHS\Microsoft.ReportViewer.WinForms.resources.dll
 C:\Users\Rafael Soncine\source\repos\ControlMEI\ControMEI\bin\Debug\zh-CHT\Microsoft.ReportViewer.WinForms.resources.dll
+C:\Users\Rafael Soncine\Source\Repos\ControlMEI\ControMEI\obj\Debug\ControMEI.csprojAssemblyReference.cache

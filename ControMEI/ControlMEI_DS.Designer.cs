@@ -10,6 +10,9 @@
 
 #pragma warning disable 1591
 
+using System;
+using System.Data;
+
 namespace ControMEI {
     
     
@@ -2777,6 +2780,7 @@ namespace ControMEI.ControlMEI_DSTableAdapters {
                 }
             }
         }
+
     }
     
     /// <summary>

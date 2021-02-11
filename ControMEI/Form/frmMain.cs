@@ -148,7 +148,7 @@ namespace ControMEI
 
         private void gerarRelatóriosToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            frmRelMensal frmRelMensal = new frmRelMensal();
+            frmRelMensal frmRelMensal = new frmRelMensal(empresa);
             OpenForm(frmRelMensal);
         }
     }
