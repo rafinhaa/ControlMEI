@@ -30,8 +30,8 @@ namespace ControMEI
 
             //this.reportViewer1.RefreshReport();
 
-            DataTable dt = new EmpresaDAO().SelectAllDataTable(empresa);
-            reportViewer1.Visible = true;
+            DataTable dt = new RecebimentoDAO().SelectRelMensal(empresa);
+            //reportViewer1.Visible = true;
             //reportViewer1.LocalReport.ReportPath = "..\\..\\RelMensal.rdlc";
             reportViewer1.LocalReport.DataSources.Clear();
             reportViewer1.LocalReport.DataSources.Add(new ReportDataSource("DataSet2", dt));

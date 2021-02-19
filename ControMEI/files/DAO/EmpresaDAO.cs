@@ -10,7 +10,7 @@ namespace ControMEI.files.DAO
 {
     class EmpresaDAO
     {
-        private static SQLiteConnection sqliteConnection = BD.DbConnection();
+        private static readonly SQLiteConnection sqliteConnection = BD.DbConnection();
         private SQLiteDataReader dr;
         private SQLiteCommand cmd;
         private string sql;
@@ -211,12 +211,12 @@ namespace ControMEI.files.DAO
             }
         }
         public DataTable SelectAllDataTable(Empresa empresa)
-        {
+        {            
             var dataTable = new DataTable();
             try
             {
                 Open();
-                sql = "SELECT * from empresa";
+                sql = "SELECT * from empresa WHERE id = @id_empresa";
                 SQLiteDataAdapter sqlda = new SQLiteDataAdapter(sql, sqliteConnection);
                 sqlda.SelectCommand.Parameters.AddWithValue("@id_empresa", empresa.Id);
                 using (dataTable)

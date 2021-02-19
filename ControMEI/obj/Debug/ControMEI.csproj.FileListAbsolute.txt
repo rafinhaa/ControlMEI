@@ -104,4 +104,4 @@ C:\Users\Rafael Soncine\source\repos\ControlMEI\ControMEI\bin\Debug\pt\Microsoft
 C:\Users\Rafael Soncine\source\repos\ControlMEI\ControMEI\bin\Debug\ru\Microsoft.ReportViewer.WinForms.resources.dll
 C:\Users\Rafael Soncine\source\repos\ControlMEI\ControMEI\bin\Debug\zh-CHS\Microsoft.ReportViewer.WinForms.resources.dll
 C:\Users\Rafael Soncine\source\repos\ControlMEI\ControMEI\bin\Debug\zh-CHT\Microsoft.ReportViewer.WinForms.resources.dll
-C:\Users\Rafael Soncine\Source\Repos\ControlMEI\ControMEI\obj\Debug\ControMEI.csprojAssemblyReference.cache
+C:\Users\Rafael Soncine\source\repos\ControlMEI\ControMEI\obj\Debug\ControMEI.csprojAssemblyReference.cache

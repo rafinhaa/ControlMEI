@@ -103,6 +103,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ControlMEI_DS.xsd</DependentUpon>
     </Compile>
+    <Compile Include="DataSet2.cs">
+      <DependentUpon>DataSet2.xsd</DependentUpon>
+    </Compile>
     <Compile Include="DataSet2.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

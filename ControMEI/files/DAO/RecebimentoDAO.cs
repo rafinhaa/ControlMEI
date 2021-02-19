@@ -164,14 +164,23 @@ namespace ControMEI.files.DAO
             }
             return recebimentoTemp;
         }
-        public DataTable SelectAllDataTable(Empresa empresa)
+        public DataTable SelectRelMensal(Empresa empresa)
         {
             var dataTable = new DataTable();
             try
             {
                 Open();                
-                sql = "SELECT id, id_empresa, descricao, data, tipo, fiscal, round(valor,2) AS valor from recebimento WHERE id_empresa = @id_empresa ORDER BY data ASC";                
-                cmd.Parameters.AddWithValue("@id_empresa", empresa.Id);
+                sql = "SELECT " +
+                        "(SELECT sum(valor) FROM Recebimento WHERE fiscal = 0 AND tipo = 0 AND id_empresa = 1) AS i,                  " +
+                        "(SELECT sum(valor) FROM Recebimento WHERE fiscal = 1 AND tipo = 0 AND id_empresa = 1) AS ii,                 " +
+                        "(SELECT sum(valor) FROM Recebimento WHERE tipo = 0 AND(fiscal = 0 OR fiscal = 1) AND @id_empresa = 1)  AS iii," +
+                        "(SELECT sum(valor) FROM Recebimento WHERE fiscal = 0 AND tipo = 1 AND id_empresa = 1) AS iv,                 " +
+                        "(SELECT sum(valor) FROM Recebimento WHERE fiscal = 1 AND tipo = 1 AND id_empresa = 1) AS v,                  " +
+                        "(SELECT sum(valor) FROM Recebimento WHERE tipo = 1 AND(fiscal = 0 OR fiscal = 1) AND @id_empresa = 1)  AS vi, " +
+                        "(SELECT sum(valor) FROM Recebimento WHERE fiscal = 0 AND tipo = 2 AND id_empresa = 1) AS vii,                " +
+                        "(SELECT sum(valor) FROM Recebimento WHERE fiscal = 1 AND tipo = 2 AND id_empresa = 1) AS viii,               " +
+                        "(SELECT sum(valor) FROM Recebimento WHERE tipo = 2 AND(fiscal = 0 OR fiscal = 1) AND @id_empresa = 1)  AS ix, " +
+                        "(SELECT sum(valor) FROM Recebimento WHERE(fiscal = 0 OR fiscal = 1) AND id_empresa = 1) AS x";
                 SQLiteDataAdapter sqlda = new SQLiteDataAdapter(sql, sqliteConnection);
                 sqlda.SelectCommand.Parameters.AddWithValue("@id_empresa", empresa.Id);
                 using (dataTable)
@@ -238,6 +247,7 @@ namespace ControMEI.files.DAO
             }
             catch (Exception ex)
             {
+                Console.WriteLine(ex);
                 return false;
             }
         }
