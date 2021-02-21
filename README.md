@@ -8,6 +8,9 @@ Software de gerencia para Micro Empreendedor Individual (MEI)
 
 ### CHANGLOG:
 
+##### v0.15 - 20/02/2021
+- Configurado RelMensal.drlc para receber parâmentros
+
 ##### v0.14 - 19/02/2021
 - Criado o metodo SelectRelMensal
 - Configurado RelMensal.drlc para receber os dados da sql

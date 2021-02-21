@@ -35,6 +35,14 @@ namespace ControMEI
             //reportViewer1.LocalReport.ReportPath = "..\\..\\RelMensal.rdlc";
             reportViewer1.LocalReport.DataSources.Clear();
             reportViewer1.LocalReport.DataSources.Add(new ReportDataSource("DataSet2", dt));
+            Microsoft.Reporting.WinForms.ReportParameter[] rParams = new Microsoft.Reporting.WinForms.ReportParameter[]
+            {
+                new Microsoft.Reporting.WinForms.ReportParameter("cnpj",empresa.Cnpj),
+                new Microsoft.Reporting.WinForms.ReportParameter("razaoSocial",empresa.RazaoSocial),
+                new Microsoft.Reporting.WinForms.ReportParameter("dataInicio","01/02/2021"),
+                new Microsoft.Reporting.WinForms.ReportParameter("dataFim","29/02/2021")
+            };
+            reportViewer1.LocalReport.SetParameters(rParams);
             this.reportViewer1.RefreshReport();
         }
     }
