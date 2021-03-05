@@ -302,7 +302,7 @@
                   <Paragraph>
                     <TextRuns>
                       <TextRun>
-                        <Value>=First(Fields!iii.Value, "DataSet2")</Value>
+                        <Value>=First(Fields!i.Value, "DataSet2")+First(Fields!ii.Value, "DataSet2")</Value>
                         <Style>
                           <Format>'R$' #,0.00;('R$' #,0.00)</Format>
                         </Style>
@@ -575,7 +575,7 @@
                   <Paragraph>
                     <TextRuns>
                       <TextRun>
-                        <Value>=First(Fields!vi.Value, "DataSet2")</Value>
+                        <Value>=First(Fields!iv.Value, "DataSet2")+First(Fields!v.Value, "DataSet2")</Value>
                         <Style>
                           <Format>'R$' #,0.00;('R$' #,0.00)</Format>
                         </Style>
@@ -849,7 +849,7 @@
                   <Paragraph>
                     <TextRuns>
                       <TextRun>
-                        <Value>=First(Fields!ix.Value, "DataSet2")</Value>
+                        <Value>=First(Fields!vii.Value, "DataSet2")+First(Fields!viii.Value, "DataSet2")</Value>
                         <Style>
                           <Format>'R$' #,0.00;('R$' #,0.00)</Format>
                         </Style>

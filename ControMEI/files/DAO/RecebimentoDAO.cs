@@ -164,25 +164,24 @@ namespace ControMEI.files.DAO
             }
             return recebimentoTemp;
         }
-        public DataTable SelectRelMensal(Empresa empresa)
+        public DataTable SelectRelMensal(Empresa empresa, String dataInicio, String dataFim)
         {
             var dataTable = new DataTable();
             try
             {
                 Open();                
                 sql = "SELECT " +
-                        "(SELECT sum(valor) FROM Recebimento WHERE fiscal = 0 AND tipo = 0 AND id_empresa = 1) AS i,                  " +
-                        "(SELECT sum(valor) FROM Recebimento WHERE fiscal = 1 AND tipo = 0 AND id_empresa = 1) AS ii,                 " +
-                        "(SELECT sum(valor) FROM Recebimento WHERE tipo = 0 AND(fiscal = 0 OR fiscal = 1) AND @id_empresa = 1)  AS iii," +
-                        "(SELECT sum(valor) FROM Recebimento WHERE fiscal = 0 AND tipo = 1 AND id_empresa = 1) AS iv,                 " +
-                        "(SELECT sum(valor) FROM Recebimento WHERE fiscal = 1 AND tipo = 1 AND id_empresa = 1) AS v,                  " +
-                        "(SELECT sum(valor) FROM Recebimento WHERE tipo = 1 AND(fiscal = 0 OR fiscal = 1) AND @id_empresa = 1)  AS vi, " +
-                        "(SELECT sum(valor) FROM Recebimento WHERE fiscal = 0 AND tipo = 2 AND id_empresa = 1) AS vii,                " +
-                        "(SELECT sum(valor) FROM Recebimento WHERE fiscal = 1 AND tipo = 2 AND id_empresa = 1) AS viii,               " +
-                        "(SELECT sum(valor) FROM Recebimento WHERE tipo = 2 AND(fiscal = 0 OR fiscal = 1) AND @id_empresa = 1)  AS ix, " +
-                        "(SELECT sum(valor) FROM Recebimento WHERE(fiscal = 0 OR fiscal = 1) AND id_empresa = 1) AS x";
+                        "(SELECT sum(valor) FROM Recebimento WHERE fiscal = 0 AND tipo = 0 AND (data BETWEEN @dataInicio AND @dataFim) AND @id_empresa) AS i,                  " +
+                        "(SELECT sum(valor) FROM Recebimento WHERE fiscal = 1 AND tipo = 0 AND (data BETWEEN @dataInicio AND @dataFim) AND @id_empresa = 1) AS ii,             " +                        
+                        "(SELECT sum(valor) FROM Recebimento WHERE fiscal = 0 AND tipo = 1 AND (data BETWEEN @dataInicio AND @dataFim) AND @id_empresa) AS iv,                 " +
+                        "(SELECT sum(valor) FROM Recebimento WHERE fiscal = 1 AND tipo = 1 AND (data BETWEEN @dataInicio AND @dataFim) AND @id_empresa) AS v,                  " +
+                        "(SELECT sum(valor) FROM Recebimento WHERE fiscal = 0 AND tipo = 2 AND (data BETWEEN @dataInicio AND @dataFim) AND @id_empresa) AS vii,                " +
+                        "(SELECT sum(valor) FROM Recebimento WHERE fiscal = 1 AND tipo = 2 AND (data BETWEEN @dataInicio AND @dataFim) AND @id_empresa) AS viii,               " +
+                        "(SELECT sum(valor) FROM Recebimento WHERE(fiscal = 0 OR fiscal = 1) AND (data BETWEEN @dataInicio AND @dataFim) AND @id_empresa = 1) AS x";
                 SQLiteDataAdapter sqlda = new SQLiteDataAdapter(sql, sqliteConnection);
                 sqlda.SelectCommand.Parameters.AddWithValue("@id_empresa", empresa.Id);
+                sqlda.SelectCommand.Parameters.AddWithValue("@dataInicio", dataInicio);
+                sqlda.SelectCommand.Parameters.AddWithValue("@dataFim", dataFim);
                 using (dataTable)
                 {
                     sqlda.Fill(dataTable);
@@ -250,6 +249,50 @@ namespace ControMEI.files.DAO
                 Console.WriteLine(ex);
                 return false;
             }
+        }
+        public DataTable SelectMonths(String ano)        {
+            var dataTable = new DataTable();
+            try
+            {
+                Open();
+                sql = "SELECT DISTINCT  strftime('%m', data) as mes FROM Recebimento WHERE strftime('%Y', data) = @ano;";
+                SQLiteDataAdapter sqlda = new SQLiteDataAdapter(sql, sqliteConnection);
+                sqlda.SelectCommand.Parameters.AddWithValue("@ano", ano);
+                using (dataTable)
+                {
+                    sqlda.Fill(dataTable);
+                }
+                sqlda.Dispose();
+                Close();
+            }
+            catch (Exception ex)
+            {
+                Close();
+                MessageBox.Show("ERRO " + ex.Message);
+            }
+            return dataTable;
+        }
+        public DataTable SelectYears()
+        {
+            var dataTable = new DataTable();
+            try
+            {
+                Open();
+                sql = "SELECT DISTINCT strftime('%Y', data) as ano FROM Recebimento";
+                SQLiteDataAdapter sqlda = new SQLiteDataAdapter(sql, sqliteConnection);
+                using (dataTable)
+                {
+                    sqlda.Fill(dataTable);
+                }
+                sqlda.Dispose();
+                Close();
+            }
+            catch (Exception ex)
+            {
+                Close();
+                MessageBox.Show("ERRO " + ex.Message);
+            }
+            return dataTable;
         }
     }
 }

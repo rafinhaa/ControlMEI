@@ -29,8 +29,16 @@ namespace ControMEI
             //this.EmpresaTableAdapter.Fill(new EmpresaDAO().SelectAllDataTable(empresa));
 
             //this.reportViewer1.RefreshReport();
+            comboBox1.DataSource = new RecebimentoDAO().SelectYears();
+            comboBox1.DisplayMember = "ano";
+            comboBox1.ValueMember = "ano";
+            searchRel();
+        }
 
-            DataTable dt = new RecebimentoDAO().SelectRelMensal(empresa);
+        private void searchRel()
+        {
+
+            DataTable dt = new RecebimentoDAO().SelectRelMensal(empresa,"2021-02-01", "2021-02-01");
             //reportViewer1.Visible = true;
             //reportViewer1.LocalReport.ReportPath = "..\\..\\RelMensal.rdlc";
             reportViewer1.LocalReport.DataSources.Clear();
@@ -39,11 +47,16 @@ namespace ControMEI
             {
                 new Microsoft.Reporting.WinForms.ReportParameter("cnpj",empresa.Cnpj),
                 new Microsoft.Reporting.WinForms.ReportParameter("razaoSocial",empresa.RazaoSocial),
-                new Microsoft.Reporting.WinForms.ReportParameter("dataInicio","01/02/2021"),
-                new Microsoft.Reporting.WinForms.ReportParameter("dataFim","29/02/2021")
+                new Microsoft.Reporting.WinForms.ReportParameter("dataInicio","2021-02-01"),
+                new Microsoft.Reporting.WinForms.ReportParameter("dataFim","2021-02-01")
             };
             reportViewer1.LocalReport.SetParameters(rParams);
             this.reportViewer1.RefreshReport();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            searchRel();
         }
     }
 }

@@ -8,6 +8,11 @@ Software de gerencia para Micro Empreendedor Individual (MEI)
 
 ### CHANGLOG:
 
+##### v0.16 - 05/03/2021
+- Criado o método SelectMonths em RecebimentoDAO.cs
+- Criado o método SelectYears em RecebimentoDAO.cs
+- Adicionado combobox para a pesquisa de ano e mes no form frmRelMensal
+
 ##### v0.15 - 20/02/2021
 - Configurado RelMensal.drlc para receber parâmentros
 
