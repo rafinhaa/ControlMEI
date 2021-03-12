@@ -8,6 +8,13 @@ Software de gerencia para Micro Empreendedor Individual (MEI)
 
 ### CHANGLOG:
 
+##### v0.16 - 12/03/2021
+- Arrumado o sql em RecebimentoDAO
+- Alterado o metodo validarData slipstring em "-" ao invez de "/"
+- Criado o metodo formatDateToBr
+- Criado o metodo formatDateToUs
+- Finalizado o modulo ConsultaRelatorio
+
 ##### v0.16 - 05/03/2021
 - Criado o método SelectMonths em RecebimentoDAO.cs
 - Criado o método SelectYears em RecebimentoDAO.cs

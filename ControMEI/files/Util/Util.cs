@@ -146,7 +146,7 @@ namespace ControMEI.files.Util
 		}
 		public static bool validarData(string data)
 		{
-			if (data.Trim().Replace("/", "").Length != 8)
+			if (data.Trim().Replace("-", "").Length != 8)
 				return false;
 			else
 				return true;
@@ -193,7 +193,6 @@ namespace ControMEI.files.Util
 		{
 			return System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location);
 		}
-
 		public static string validarConRecebimento(Recebimento recebimento)
 		{
 			string sql = "";
@@ -219,6 +218,23 @@ namespace ControMEI.files.Util
 			}
 			Console.WriteLine(sql.Remove(sql.Length - 3));
 			return sql.Remove(sql.Length -3 );
+		}
+		public static List<string> mountResearch(String ano, String mes)
+        {
+			List<string> list = new List<string>();
+			list.Add(ano + "-"+ mes + "-01");
+			list.Add(ano + "-" + mes + "-31");
+			return list;
+        }
+		public static string formatDateToBr(String data)
+        {
+			string[] words = data.Split('-');
+			return words[2] + "/" + words[1] + "/" + words[0];
+        }
+		public static string formatDateToUs(String data)
+		{
+			string[] words = data.Split('/');
+			return words[2] + "-" + words[1] + "-" + words[0];
 		}
 	}
 }

@@ -33,12 +33,12 @@ namespace ControMEI
         }
 
         private void btnSalvar_Click(object sender, EventArgs e)
-        {
+        {            
             Recebimento recebimento = new Recebimento(
                 empresa,
                 txtDescrição.Text,
                 cmbEmissaoNF.SelectedIndex,
-                dateTimePicker1.Value.ToShortDateString(),
+                Util.formatDateToUs(dateTimePicker1.Value.ToShortDateString()),
                 cmbTipo.SelectedIndex,
                 Util.converterStringEmFloat(txtValor.Text)                
                 );            
