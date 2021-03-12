@@ -8,7 +8,7 @@ Software de gerencia para Micro Empreendedor Individual (MEI)
 
 ### CHANGLOG:
 
-##### v0.16 - 12/03/2021
+##### v0.17 - 12/03/2021
 - Arrumado o sql em RecebimentoDAO
 - Alterado o metodo validarData slipstring em "-" ao invez de "/"
 - Criado o metodo formatDateToBr
