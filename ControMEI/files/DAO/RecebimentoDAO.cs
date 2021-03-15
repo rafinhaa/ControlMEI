@@ -133,15 +133,17 @@ namespace ControMEI.files.DAO
             }
             return recebimentoTemp;
         }
-        public List<Recebimento> SelectAllList(Empresa empresa)
+        public List<Recebimento> SelectListByPeriod(Empresa empresa, String dataInicio, String dataFim)
         {
             List<Recebimento> recebimentoTemp = new List<Recebimento>();
             try
             {
                 Open();
-                sql = "SELECT * FROM Recebimento WHERE id_empresa = @id_empresa";
+                sql = "SELECT * FROM Recebimento WHERE (data BETWEEN @dataInicio AND @dataFim) AND id_empresa = @id_empresa";
                 cmd = new SQLiteCommand(sql, sqliteConnection);
                 cmd.Parameters.AddWithValue("@id_empresa", empresa.Id);
+                cmd.Parameters.AddWithValue("@dataInicio", dataInicio);
+                cmd.Parameters.AddWithValue("@dataFim", dataFim);
                 dr = cmd.ExecuteReader();
                 while (dr.Read())
                 {
@@ -163,6 +165,30 @@ namespace ControMEI.files.DAO
                 MessageBox.Show("ERRO " + ex.Message);
             }
             return recebimentoTemp;
+        }
+        public DataTable SelectDataTableByPeriod(Empresa empresa, String dataInicio, String dataFim)
+        {
+            var dataTable = new DataTable();
+            try
+            {
+                Open();
+                sql = "SELECT * FROM Recebimento WHERE (data BETWEEN @dataInicio AND @dataFim) AND id_empresa = @id_empresa";
+                SQLiteDataAdapter sqlda = new SQLiteDataAdapter(sql, sqliteConnection);
+                sqlda.SelectCommand.Parameters.AddWithValue("@id_empresa", empresa.Id);
+                sqlda.SelectCommand.Parameters.AddWithValue("@dataInicio", dataInicio);
+                sqlda.SelectCommand.Parameters.AddWithValue("@dataFim", dataFim);
+                using (dataTable)
+                {
+                    sqlda.Fill(dataTable);
+                }
+                Close();
+            }
+            catch (Exception ex)
+            {
+                Close();
+                MessageBox.Show("ERRO " + ex.Message);
+            }
+            return dataTable;
         }
         public DataTable SelectRelMensal(Empresa empresa, String dataInicio, String dataFim)
         {
@@ -196,27 +222,7 @@ namespace ControMEI.files.DAO
             }
             return dataTable;
         }
-        public DataTable SelectAllDataTable(string values)
-        {
-            var dataTable = new DataTable();
-            try
-            {
-                Open();
-                sql = "SELECT * FROM Recebimento WHERE " + values;
-                SQLiteDataAdapter sqlda = new SQLiteDataAdapter(sql, sqliteConnection);
-                using (dataTable)
-                {
-                    sqlda.Fill(dataTable);
-                }
-                Close();
-            }
-            catch (Exception ex)
-            {
-                Close();
-                MessageBox.Show("ERRO " + ex.Message);
-            }
-            return dataTable;
-        }
+        
         public bool Update(Recebimento recebimento)
         {
             int retorno;

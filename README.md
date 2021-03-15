@@ -8,6 +8,12 @@ Software de gerencia para Micro Empreendedor Individual (MEI)
 
 ### CHANGLOG:
 
+##### v0.18 - 15/03/2021
+- Alterado o metodo SelectAllList para SelectListByPeriod recebendo 3 argumentos
+- Alterado o metodo SelectAllDataTable para SelectDataTableByPeriod recebendo 3 argumentos
+- Criado botão cancelado em frmConRecebimento
+- Alterado botão editar em frmConRecebimento para editar e atualizar
+
 ##### v0.17 - 12/03/2021
 - Arrumado o sql em RecebimentoDAO
 - Alterado o metodo validarData slipstring em "-" ao invez de "/"

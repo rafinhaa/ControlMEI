@@ -18,6 +18,7 @@ namespace ControMEI
         RecebimentoDAO recebimentoDAO = new RecebimentoDAO();
         Recebimento recebimento;
         private Empresa empresa;
+        bool atualizar = false;
 
         public Form1(Empresa empresa)
         {
@@ -27,39 +28,33 @@ namespace ControMEI
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            dateTimePicker1.Value = DateTime.Now;
+            DateTime now = DateTime.Now;
+            dtInicio.Value = new DateTime(now.Year, now.Month, 1);
+            dtFim.Value = dtInicio.Value.AddMonths(1).AddDays(-1);
+            btnCancelar.Visible = false;
             recebimento = new Recebimento(empresa);
+            disableItens();
             updateTable();
             dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
             dataGridView1.Columns[dataGridView1.ColumnCount - 1].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
             dataGridView1.Columns["Id"].Visible = false;
             
-        }
-        private void btnBuscar_Click(object sender, EventArgs e)
-        {
-            Recebimento recebimento = new Recebimento(
-                empresa,
-                txtDescrição.Text,
-                cmbEmissaoNF.SelectedIndex,
-                dateTimePicker1.Value.ToShortDateString(),
-                cmbTipo.SelectedIndex,
-                Util.converterStringEmFloat(txtValor.Text)
-                );            
-            dataGridView1.DataSource = recebimentoDAO.SelectAllDataTable(Util.validarConRecebimento(recebimento));
-        }
-        
+        }        
         private void bindListToFields(Recebimento recebimento)
         {
             txtDescrição.Text = recebimento.Descricao;
             cmbEmissaoNF.SelectedIndex = recebimento.NotaFiscal;
-            dateTimePicker1.Value = Convert.ToDateTime(recebimento.Data);
+            dateTimePicker1.Value = Convert.ToDateTime(Util.formatDateToBr(recebimento.Data));
             cmbTipo.SelectedIndex = recebimento.Tipo;
             txtValor.Text = recebimento.Valor.ToString();
         }
 
         private void updateTable()
         {
-            dataGridView1.DataSource = recebimentoDAO.SelectAllList(empresa);
+            dataGridView1.DataSource = recebimentoDAO.SelectListByPeriod(empresa,
+                    dtInicio.Value.ToString("yyyy-MM-dd"),
+                    dtFim.Value.ToString("yyyy-MM-dd")
+            );
         }
 
         private void btnExcluir_Click(object sender, EventArgs e)
@@ -71,22 +66,7 @@ namespace ControMEI
 
         private void btnAlterar_Click(object sender, EventArgs e)
         {
-            recebimento.Descricao = txtDescrição.Text;
-            recebimento.NotaFiscal = cmbEmissaoNF.SelectedIndex;
-            recebimento.Data = dateTimePicker1.Value.ToShortDateString();
-            recebimento.Tipo = cmbTipo.SelectedIndex;
-            recebimento.Valor = Util.converterStringEmFloat(txtValor.Text);             
-            if (Util.validarRecebimento(recebimento))
-            {
-                if (recebimentoDAO.Update(recebimento)) {
-                    MessageBox.Show("Atualização efetuada com sucesso!");                    
-                    updateTable();
-                }
-                else
-                {
-                    MessageBox.Show("Não foi possivel efetuar a atualização");
-                }
-            }
+
         }
         private void txtValor_KeyPress(object sender, KeyPressEventArgs e)
         {
@@ -114,6 +94,84 @@ namespace ControMEI
             {
                 tb.Text = String.Empty;
             }
+        }
+
+        private void dtFim_ValueChanged(object sender, EventArgs e)
+        {
+            dataGridView1.DataSource = recebimentoDAO.SelectDataTableByPeriod(empresa,
+                dtInicio.Value.ToString("yyyy-MM-dd"),
+                dtFim.Value.ToString("yyyy-MM-dd")
+            );
+        }
+
+        private void dtInicio_ValueChanged(object sender, EventArgs e)
+        {
+            dataGridView1.DataSource = recebimentoDAO.SelectDataTableByPeriod(empresa,
+                dtInicio.Value.ToString("yyyy-MM-dd"),
+                dtFim.Value.ToString("yyyy-MM-dd")
+            );
+        }
+        public void disableItens()
+        {
+            txtDescrição.Enabled = false;
+            cmbEmissaoNF.Enabled = false;
+            cmbTipo.Enabled = false;
+            txtValor.Enabled = false;
+            btnCancelar.Visible = false;
+            btnCancelar.Enabled = false;
+            btnExcluir.Enabled = true;
+            dataGridView1.Enabled = true;
+        }
+        public void enableItens()
+        {
+            txtDescrição.Enabled = true;
+            cmbEmissaoNF.Enabled = true;
+            cmbTipo.Enabled = true;
+            txtValor.Enabled = true;
+            btnCancelar.Visible = true;
+            btnCancelar.Enabled = true;
+            btnExcluir.Enabled = false;
+            dataGridView1.Enabled = false;
+        }
+
+        private void btnEditarOuAtualizar_Click(object sender, EventArgs e)
+        {            
+            if (atualizar)
+            {
+                atualizar = false;
+                recebimento.Descricao = txtDescrição.Text;
+                recebimento.NotaFiscal = cmbEmissaoNF.SelectedIndex;
+                recebimento.Data = Util.formatDateToUs(dateTimePicker1.Value.ToShortDateString());
+                recebimento.Tipo = cmbTipo.SelectedIndex;
+                recebimento.Valor = Util.converterStringEmFloat(txtValor.Text);
+                if (Util.validarRecebimento(recebimento))
+                {
+                    if (recebimentoDAO.Update(recebimento))
+                    {
+                        MessageBox.Show("Atualização efetuada com sucesso!");
+                        updateTable();
+                        btnEditarOuAtualizar.Text = "Editar";
+                        disableItens();
+                        limpaCampos();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Não foi possivel efetuar a atualização");
+                    }
+                }                                
+            }
+            else{
+                enableItens();
+                atualizar = true;
+                btnEditarOuAtualizar.Text = "Atualizar";
+            }
+        }
+
+        private void btnCancelar_Click(object sender, EventArgs e)
+        {
+            atualizar = false;
+            limpaCampos();
+            disableItens();
         }
     }
 }
